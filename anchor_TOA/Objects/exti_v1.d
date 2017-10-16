@@ -3,7 +3,7 @@
 .\objects\exti_v1.o: .\FWlib\inc\stm32f0xx_exti.h
 .\objects\exti_v1.o: .\SYSTEM\stm32f0xx.h
 .\objects\exti_v1.o: .\CORE\core_cm0.h
-.\objects\exti_v1.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\exti_v1.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\exti_v1.o: .\CORE\core_cmInstr.h
 .\objects\exti_v1.o: .\CORE\core_cmFunc.h
 .\objects\exti_v1.o: .\SYSTEM\system_stm32f0xx.h
@@ -33,7 +33,7 @@
 .\objects\exti_v1.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\exti_v1.o: .\FWlib\inc\stm32f0xx_misc.h
 .\objects\exti_v1.o: .\USER\sys.h
-.\objects\exti_v1.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\exti_v1.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\exti_v1.o: .\HARDWARE\decadriver\deca_types.h
 .\objects\exti_v1.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\exti_v1.o: .\HARDWARE\decadriver\deca_version.h

@@ -3,7 +3,7 @@
 .\objects\delay.o: .\USER\sys.h
 .\objects\delay.o: .\SYSTEM\stm32f0xx.h
 .\objects\delay.o: .\CORE\core_cm0.h
-.\objects\delay.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\delay.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\delay.o: .\CORE\core_cmInstr.h
 .\objects\delay.o: .\CORE\core_cmFunc.h
 .\objects\delay.o: .\SYSTEM\system_stm32f0xx.h
@@ -32,7 +32,7 @@
 .\objects\delay.o: .\FWlib\inc\stm32f0xx_usart.h
 .\objects\delay.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\delay.o: .\FWlib\inc\stm32f0xx_misc.h
-.\objects\delay.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\delay.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\delay.o: .\HARDWARE\decadriver\deca_types.h
 .\objects\delay.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\delay.o: .\HARDWARE\decadriver\deca_version.h

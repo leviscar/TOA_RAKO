@@ -3,7 +3,7 @@
 .\objects\spi_v1.o: .\FWlib\inc\stm32f0xx_spi.h
 .\objects\spi_v1.o: .\SYSTEM\stm32f0xx.h
 .\objects\spi_v1.o: .\CORE\core_cm0.h
-.\objects\spi_v1.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\spi_v1.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\spi_v1.o: .\CORE\core_cmInstr.h
 .\objects\spi_v1.o: .\CORE\core_cmFunc.h
 .\objects\spi_v1.o: .\SYSTEM\system_stm32f0xx.h

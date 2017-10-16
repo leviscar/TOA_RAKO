@@ -391,9 +391,9 @@ int main(void)
 						printf("TAG:%d No:%d\r\n",tagnumtmp,idx);
 						
 				}
-				else if(Que[front].buff[FUNCODE_IDX]==0x10)//TOA定位
+				else if(Que[front].buff[FUNCODE_IDX]==0x21)//TOA定位
 				{
-				
+					printf("rec TOA\r\n");
 				}
 
 				

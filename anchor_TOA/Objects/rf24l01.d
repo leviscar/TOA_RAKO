@@ -2,7 +2,7 @@
 .\objects\rf24l01.o: HARDWARE\NRF24L01\rf24l01.h
 .\objects\rf24l01.o: .\SYSTEM\stm32f0xx.h
 .\objects\rf24l01.o: .\CORE\core_cm0.h
-.\objects\rf24l01.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rf24l01.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\rf24l01.o: .\CORE\core_cmInstr.h
 .\objects\rf24l01.o: .\CORE\core_cmFunc.h
 .\objects\rf24l01.o: .\SYSTEM\system_stm32f0xx.h

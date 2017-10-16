@@ -2,7 +2,7 @@
 .\objects\deca_mutex.o: .\HARDWARE\decadriver\deca_device_api.h
 .\objects\deca_mutex.o: .\SYSTEM\stm32f0xx.h
 .\objects\deca_mutex.o: .\CORE\core_cm0.h
-.\objects\deca_mutex.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\deca_mutex.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\deca_mutex.o: .\CORE\core_cmInstr.h
 .\objects\deca_mutex.o: .\CORE\core_cmFunc.h
 .\objects\deca_mutex.o: .\SYSTEM\system_stm32f0xx.h

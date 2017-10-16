@@ -9,6 +9,22 @@
 #include "delay.h"
 #include "math.h"
 
+/* Length of the common part of the message (up to and including the function code, see NOTE 2 below). */
+#define ALL_MSG_COMMON_LEN 10
+/* Indexes to access some of the fields in the frames defined above. */
+#define ALL_MSG_SN_IDX 2
+#define FINAL_MSG_POLL_TX_TS_IDX 10
+#define FINAL_MSG_RESP_RX_TS_IDX 14
+#define FINAL_MSG_FINAL_TX_TS_IDX 18
+#define FINAL_MSG_TS_LEN 4
+#define POLL_TX_TO_RESP_RX_DLY_UUS 150
+/* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW1000's delayed TX function. This includes the
+ * frame length of approximately 2.66 ms with above configuration. */
+#define RESP_RX_TO_FINAL_TX_DLY_UUS 3100
+/* Receive response timeout. See NOTE 5 below. */
+#define RESP_RX_TIMEOUT_UUS 2700
+
+
 //#inlcude "USART.h"
 #define ACK_FC_0 0x02
 #define ACK_FC_1 0x00

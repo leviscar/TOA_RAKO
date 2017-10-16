@@ -2,7 +2,7 @@
 .\objects\main.o: USER\sys.h
 .\objects\main.o: .\SYSTEM\stm32f0xx.h
 .\objects\main.o: .\CORE\core_cm0.h
-.\objects\main.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: .\CORE\core_cmInstr.h
 .\objects\main.o: .\CORE\core_cmFunc.h
 .\objects\main.o: .\SYSTEM\system_stm32f0xx.h
@@ -31,7 +31,7 @@
 .\objects\main.o: .\FWlib\inc\stm32f0xx_usart.h
 .\objects\main.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\main.o: .\FWlib\inc\stm32f0xx_misc.h
-.\objects\main.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\main.o: .\HARDWARE\decadriver\deca_types.h
 .\objects\main.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\main.o: .\HARDWARE\decadriver\deca_version.h
@@ -44,6 +44,6 @@
 .\objects\main.o: .\USER\Usmart\usmart_str.h
 .\objects\main.o: .\HARDWARE\EXTI\EXTI_v1.h
 .\objects\main.o: .\HARDWARE\NRF24L01\rf24l01.h
-.\objects\main.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: .\HARDWARE\Platform_deca\deca_callback.h
 .\objects\main.o: .\HARDWARE\Platform_deca\Deca_user_api.h

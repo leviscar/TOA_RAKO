@@ -1,9 +1,9 @@
 f072cbt6\inv_mpu_dmp_motion_driver.o: ..\Drivers\Hardware\MPL\driver\eMPL\inv_mpu_dmp_motion_driver.c
-f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
-f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\math.h
+f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+f072cbt6\inv_mpu_dmp_motion_driver.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 f072cbt6\inv_mpu_dmp_motion_driver.o: ..\Drivers\Hardware\MPL\driver\eMPL\inv_mpu.h
 f072cbt6\inv_mpu_dmp_motion_driver.o: ..\Drivers\Hardware\MPL\driver\eMPL\inv_mpu_dmp_motion_driver.h
 f072cbt6\inv_mpu_dmp_motion_driver.o: ..\Drivers\Hardware\MPL\driver\eMPL\dmpKey.h

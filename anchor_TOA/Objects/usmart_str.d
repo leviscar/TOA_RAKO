@@ -2,7 +2,7 @@
 .\objects\usmart_str.o: USER\Usmart\usmart_str.h
 .\objects\usmart_str.o: .\SYSTEM\stm32f0xx.h
 .\objects\usmart_str.o: .\CORE\core_cm0.h
-.\objects\usmart_str.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\usmart_str.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\usmart_str.o: .\CORE\core_cmInstr.h
 .\objects\usmart_str.o: .\CORE\core_cmFunc.h
 .\objects\usmart_str.o: .\SYSTEM\system_stm32f0xx.h

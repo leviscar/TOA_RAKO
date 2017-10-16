@@ -5,7 +5,7 @@
 .\objects\deca_user_api.o: .\USER\sys.h
 .\objects\deca_user_api.o: .\SYSTEM\stm32f0xx.h
 .\objects\deca_user_api.o: .\CORE\core_cm0.h
-.\objects\deca_user_api.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\deca_user_api.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\deca_user_api.o: .\CORE\core_cmInstr.h
 .\objects\deca_user_api.o: .\CORE\core_cmFunc.h
 .\objects\deca_user_api.o: .\SYSTEM\system_stm32f0xx.h
@@ -34,9 +34,9 @@
 .\objects\deca_user_api.o: .\FWlib\inc\stm32f0xx_usart.h
 .\objects\deca_user_api.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\deca_user_api.o: .\FWlib\inc\stm32f0xx_misc.h
-.\objects\deca_user_api.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\deca_user_api.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\deca_user_api.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\deca_user_api.o: .\HARDWARE\decadriver\deca_version.h
-.\objects\deca_user_api.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\deca_user_api.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\deca_user_api.o: HARDWARE\Platform_deca\deca_callback.h
 .\objects\deca_user_api.o: .\HARDWARE\USART\usart_v1.h

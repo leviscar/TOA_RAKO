@@ -3,7 +3,7 @@
 .\objects\test_fun.o: USER\sys.h
 .\objects\test_fun.o: .\SYSTEM\stm32f0xx.h
 .\objects\test_fun.o: .\CORE\core_cm0.h
-.\objects\test_fun.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\test_fun.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\test_fun.o: .\CORE\core_cmInstr.h
 .\objects\test_fun.o: .\CORE\core_cmFunc.h
 .\objects\test_fun.o: .\SYSTEM\system_stm32f0xx.h
@@ -32,7 +32,7 @@
 .\objects\test_fun.o: .\FWlib\inc\stm32f0xx_usart.h
 .\objects\test_fun.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\test_fun.o: .\FWlib\inc\stm32f0xx_misc.h
-.\objects\test_fun.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\test_fun.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\test_fun.o: .\HARDWARE\decadriver\deca_types.h
 .\objects\test_fun.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\test_fun.o: .\HARDWARE\decadriver\deca_version.h

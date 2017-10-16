@@ -1,8 +1,8 @@
 .\objects\deca_spi.o: HARDWARE\Platform_deca\deca_spi.c
-.\objects\deca_spi.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\deca_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\deca_spi.o: .\SYSTEM\stm32f0xx.h
 .\objects\deca_spi.o: .\CORE\core_cm0.h
-.\objects\deca_spi.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\deca_spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\deca_spi.o: .\CORE\core_cmInstr.h
 .\objects\deca_spi.o: .\CORE\core_cmFunc.h
 .\objects\deca_spi.o: .\SYSTEM\system_stm32f0xx.h

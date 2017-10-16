@@ -1,6 +1,6 @@
 f072cbt6\delay.o: ..\Src\delay.c
 f072cbt6\delay.o: ..\Inc\delay.h
-f072cbt6\delay.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f072cbt6\delay.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 f072cbt6\delay.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
 f072cbt6\delay.o: ..\Inc\stm32f0xx_hal_conf.h
 f072cbt6\delay.o: ..\Inc\mxconstants.h
@@ -15,7 +15,7 @@ f072cbt6\delay.o: ../Drivers/CMSIS/Include/core_cmFunc.h
 f072cbt6\delay.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h
 f072cbt6\delay.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
 f072cbt6\delay.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-f072cbt6\delay.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+f072cbt6\delay.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 f072cbt6\delay.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h
 f072cbt6\delay.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h
 f072cbt6\delay.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio_ex.h

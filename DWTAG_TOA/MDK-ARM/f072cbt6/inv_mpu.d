@@ -1,9 +1,9 @@
 f072cbt6\inv_mpu.o: ..\Drivers\Hardware\MPL\driver\eMPL\inv_mpu.c
-f072cbt6\inv_mpu.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-f072cbt6\inv_mpu.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-f072cbt6\inv_mpu.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-f072cbt6\inv_mpu.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
-f072cbt6\inv_mpu.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\math.h
+f072cbt6\inv_mpu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+f072cbt6\inv_mpu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f072cbt6\inv_mpu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+f072cbt6\inv_mpu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+f072cbt6\inv_mpu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 f072cbt6\inv_mpu.o: ..\Drivers\Hardware\MPL\driver\eMPL\inv_mpu.h
 f072cbt6\inv_mpu.o: ..\Drivers\Hardware\I2C\I2C.h
 f072cbt6\inv_mpu.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h

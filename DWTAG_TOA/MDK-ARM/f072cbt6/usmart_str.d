@@ -3,7 +3,7 @@ f072cbt6\usmart_str.o: ..\Drivers\Hardware\USAMRT\usmart_str.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Include/core_cm0.h
-f072cbt6\usmart_str.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f072cbt6\usmart_str.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Include/core_cmInstr.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Include/core_cmFunc.h
@@ -15,7 +15,7 @@ f072cbt6\usmart_str.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc.h
 f072cbt6\usmart_str.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h
 f072cbt6\usmart_str.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h
 f072cbt6\usmart_str.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-f072cbt6\usmart_str.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+f072cbt6\usmart_str.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 f072cbt6\usmart_str.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h
 f072cbt6\usmart_str.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h
 f072cbt6\usmart_str.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio_ex.h

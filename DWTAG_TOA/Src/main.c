@@ -83,6 +83,7 @@ static dwt_config_t config = {
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+void sendTx2Anchor(void);
 void POLL_TimeWindow(void);
 void SystemClock_Config(void);
 void Error_Handler(void);
@@ -122,6 +123,13 @@ uint8_t usart_rx_buff[64];//串口buff
 uint8 tx_poll_time[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x2B, 0, 0};//用来查询时间戳的
 uint8 tx_poll_msg[PLLMSGLEN] = {0x41, 0x88, 0, 0xCA, 0xDE, 0xFF, 0xFF, 0, 0, 0x80, 0, 0};//時鐘同步時進行廣播閃爍的
 uint8 tx_TOAdata[TOA_MSG_LEN]={0x61,0x88,0,0xCA, 0xDE,0x01, 0x00, 0x00, 0x00,0x1a,0,0};//发送TOA数据
+
+
+/* Frame sequence number, incremented after each transmission. */
+static uint8 frame_seq_nb = 0;
+static uint8 tx_poll_mes[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x21, 0, 0};
+static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x10, 0x02, 0, 0, 0, 0};
+static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 uint8 dw_txseq_num=1;
 usart_bitfield USART_STA={
@@ -291,11 +299,12 @@ int main(void)
 		cnt_toa++;
 		if(cnt_toa<10)
 		{
-			for(i=0;i<QUANTITY_ANCHOR;i++)
-			{
-				if(twoway_ranging(0x01,&dis[i]))dis[0]=0;
-			}
-			send2MainAnch(dis,QUANTITY_ANCHOR);
+//			for(i=0;i<QUANTITY_ANCHOR;i++)
+//			{
+//				if(twoway_ranging(0x01,&dis[i]))dis[0]=0;
+//			}
+//			send2MainAnch(dis,QUANTITY_ANCHOR);
+			sendTx2Anchor();
 			printf("sent data\r\n");
 			//Sleep
 		}
@@ -719,6 +728,25 @@ int send2MainAnch(float *data,int len)//發送數據給主機站
 	return 0;
 }
 
+void sendTx2Anchor(void)
+{
+	tx_poll_mes[ALL_MSG_SN_IDX] = frame_seq_nb;
+	dwt_writetxdata(sizeof(tx_poll_mes), tx_poll_mes, 0); /* Zero offset in TX buffer. */
+  dwt_writetxfctrl(sizeof(tx_poll_mes), 0, 1); /* Zero offset in TX buffer, ranging. */
+	dwt_setrxtimeout(10000);//设置接受超时
+	/* Start transmission, indicating that a response is expected so that reception is enabled automatically after the frame is sent and the delay
+  * set by dwt_setrxaftertxdelay() has elapsed. */
+  dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
+	while(!isframe_sent);
+	isframe_sent=0;
+	
+//	/* We assume that the transmission is achieved correctly, poll for reception of a frame or error/timeout. See NOTE 9 below. */
+//  while (!((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) & (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)))
+//  { };
+
+  /* Increment frame sequence number after transmission of the poll message (modulo 256). */
+  frame_seq_nb++;
+}
 
 /* USER CODE END 4 */
 
