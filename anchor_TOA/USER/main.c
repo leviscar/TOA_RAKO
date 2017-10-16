@@ -1,3 +1,4 @@
+
 #include "sys.h"
 #include "spi_v1.h"
 #include "usart_v1.h"
@@ -16,6 +17,12 @@
 #define TGDATA_BUFFLEN 10
 
 /* Declaration of static functions. */
+static int WirelessSyncDataProcess_MA(void);
+static int WirelessSyncDataProcess_SA(void);
+static int AssignTimeWindow(void);
+static int TOAdata_process(void);
+static int DS_TwoWayRanging(void);
+
 void TIM7_init(void);
 void SWITCH_DB(void);
 void cacu_crc(void);
@@ -49,8 +56,8 @@ static dwt_config_t config = {
     (129 + 8 - 8) /* SFD timeout (preamble length + 1 + SFD length - PAC size). Used in RX only. */
 };
 
-uint8_t nrf_Tx_Buffer[33] ; // nrf无线传输发送数据
-uint8_t nrf_Rx_Buffer[33] ; // nrf无线传输接收数据
+uint8_t nrf_Tx_Buffer[33] ; // nrf????????
+uint8_t nrf_Rx_Buffer[33] ; // nrf????????
 /* Frames used in the ranging process. See NOTE 2 below. */
 /* Buffer to store received response message.
  * Its size is adjusted to longest frame that this example code is supposed to handle. */
@@ -123,7 +130,7 @@ struct TG_DATA_str
 {
 
 	uint16 DATATYPE;
-	uint8 wearIDCA;//佩戴标记 高4位为左 低4位为右
+	uint8 wearIDCA;//???? ?4??? ?4???
 	uint8 validcnt;
 	uint16 tagnum;
 	uint16 idx;
@@ -137,17 +144,9 @@ struct TG_DATA_str
 
 int main(void)
 {
-	uint32 time;
 	decaIrqStatus_t  stat ;
 	uint32 status;
-	uint32 delayed_txtime;
-	uint16 anchnumtmp;
-	uint16 tagnumtmp;
-	uint8 idx=0,i=0,wearing=0;
 	uint8 MPUdataidx;
-	uint8 systim1[5];
-	uint8 systim2[5];
-	uint8 Tocnt=0;
 #ifdef	FLASHPROTECT
 	FLASH_Unlock();
 	FLASH_OB_Unlock();
@@ -174,12 +173,10 @@ int main(void)
 	}
 	else
 	{
-		//printf("\r\n 24L01 check ok\r\n");
+		printf("\r\n 24L01 check ok\r\n");
 	}
 
-
-	//dw1000 init
-	if (dwt_initialise(DWT_LOADUCODE) == DWT_ERROR)
+	if (dwt_initialise(DWT_LOADUCODE) == DWT_ERROR)	//dw1000 init
 		{
 				printf("INIT FAILED\r\n");
 				while (1)
@@ -238,165 +235,18 @@ int main(void)
 		
 	#ifdef MAIN_ANCHOR
 
-		 if(Qcnt)
+		 while(Qcnt)
 			{
-				
-				if(Que[front].buff[FUNCODE_IDX]==0x80||Que[front].buff[FUNCODE_IDX]==0x81)//无线同步数据处理
-				{
-					if(Que[front].buff[FUNCODE_IDX]==0x80)//處理得到相關數據，0x80说明是来自标签的
+				switch(Que[front].buff[FUNCODE_IDX])
 					{
-						tagnumtmp=Que[front].buff[SOURADD];
-						tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
-						anchnumtmp=ANCHOR_NUM;
-						rx_timestamp=Que[front].rx_timestamp;
-						idx=Que[front].buff[FRAME_SN_IDX];
-						if(tagnumtmp!=0)//判断是否来自同步时基
-						{
-							wearing=0;
-							wearing|=(Que[front].buff[WLIDX])<<4;
-							wearing|=(Que[front].buff[WRIDX]);
-						}
-						else
-						{
-							TBsyctime=Que[front].buff[WLIDX];
-							TBsyctime+=Que[front].buff[WRIDX]<<8;
-						}
+						case 0x80:WirelessSyncDataProcess_MA();break;
+						case 0x81:WirelessSyncDataProcess_MA();break;
+						case 0x2B:AssignTimeWindow();break;
+						case 0x1A:TOAdata_process();break;
+						case 0x21:DS_TwoWayRanging();break;
+						default:printf("UNknow cmd\r\n");
 					}
-					else if(Que[front].buff[FUNCODE_IDX]==0x81)
-					{
-						final_msg_get_ts(&Que[front].buff[RXBUFFTS_IDX], &rx_timestamp);
-						anchnumtmp=Que[front].buff[SOURADD];
-						anchnumtmp+=Que[front].buff[SOURADD+1]<<8;
-						tagnumtmp=Que[front].buff[TIMSTAMPS_OWNERID];
-						tagnumtmp+=(Que[front].buff[TIMSTAMPS_OWNERID+1]-128)<<8;
-						idx=Que[front].buff[FRAME_SN_IDX];
-						if(tagnumtmp!=0)
-						{
-							wearing=0;
-							wearing=(Que[front].buff[RXBUFF_WLIDX])<<4;
-							wearing=(Que[front].buff[RXBUFF_WRIDX]);
-						}				
-						else
-						{
-							TBsyctime=Que[front].buff[RXBUFF_WLIDX];
-							TBsyctime+=Que[front].buff[RXBUFF_WRIDX]<<8;
-						}
-					}
-
-					
-					if(tagnumtmp==0)
-					{
-						//时钟同步数据
-						if(idxreco==-1)
-						{
-							idxreco=idx;
-						}
-						if(idx==idxreco)
-						{
-							AC_DATA[anchnumtmp-1].anchnum=anchnumtmp;
-							AC_DATA[anchnumtmp-1].tagnum=tagnumtmp;
-							AC_DATA[anchnumtmp-1].idx=idx;
-							AC_DATA[anchnumtmp-1].timestamp=rx_timestamp;	
-							AC_DATA[anchnumtmp-1].DATATYPE=0xaa;
-						}
-						else
-						{
-							while(DMA_transing);
-							HEAD.anchcnt=4;
-							HEAD.ADDR=1;
-							HEAD.CMD=0x02;
-							HEAD.LEN=sizeof(AC_DATA)+TAG_datacnt*sizeof(struct TG_DATA_str)+3;
-							HEAD.STX=0xfbfb;
-							HEAD.tagcnt=TAG_datacnt;
-							cacu_crc();
-							//usart_trans((uint8*)&HEAD,sizeof(HEAD));//如果地址不連續，就必須分開傳輸
-							start_DMA(TAG_datacnt);//發送數據
-							while(DMA_transing);
-							fputc((int)crc,NULL);
-							crc=0;
-							memset(AC_DATA,0,sizeof(struct ANCHOR_TBDATA_str)*ANCHORCNT);
-							memset(TG_DATA,0,sizeof(struct TG_DATA_str)*TAG_datacnt);
 							
-							TAG_datacnt=0;
-							idxreco=idx;
-							AC_DATA[anchnumtmp-1].anchnum=anchnumtmp;
-							AC_DATA[anchnumtmp-1].tagnum=tagnumtmp;
-							AC_DATA[anchnumtmp-1].idx=idx;
-							AC_DATA[anchnumtmp-1].timestamp=rx_timestamp;
-							AC_DATA[anchnumtmp-1].DATATYPE=0xaa;
-							
-						}
-
-					}
-					else
-					{
-						for(i=0;i<TGDATA_BUFFLEN;i++)
-						{
-							if((TG_DATA[i].tagnum==tagnumtmp)&&(TG_DATA[i].idx==idx))
-							{//说明是存在这个标签的数据的
-								TG_DATA[i].validcnt|=1<<(anchnumtmp-1);
-								TG_DATA[i].anchTS[anchnumtmp-1]=rx_timestamp;
-								TG_DATA[i].wearIDCA|=wearing;
-								break;
-							}
-							else if(TG_DATA[i].tagnum==0)
-							{//说明没遍历到相关数据
-								TG_DATA[i].tagnum=tagnumtmp;
-								TG_DATA[i].idx=idx;
-								TG_DATA[i].validcnt|=1<<(anchnumtmp-1);
-								TG_DATA[i].anchTS[anchnumtmp-1]=rx_timestamp;
-								TG_DATA[i].DATATYPE=0xbb;
-								TG_DATA[i].wearIDCA|=wearing;
-								#ifdef MPUUSING
-								if(anchnumtmp==1)
-								{
-									memcpy(TG_DATA[i].MPUdata,Que[front].buff+12,112);
-								}
-								#endif
-								TAG_datacnt++;
-								
-								break;
-							}							
-							
-						}
-						
-						
-					}
-					
-				}
-				else if(Que[front].buff[FUNCODE_IDX]==0x2B)//授時處理
-				{
-					
-					tx_resp_time[DESTADD]=Que[front].buff[SOURADD];
-					tx_resp_time[DESTADD+1]=Que[front].buff[SOURADD+1];
-					tx_resp_time[10]=(uint8)(msec);
-					tx_resp_time[11]=(uint8)(msec>>8);
-					tx_resp_time[12]=(uint8)(msec>>16);
-					tx_resp_time[13]=(uint8)(msec>>24);
-					tx_resp_time[14]=(uint8)(TBsyctime);
-					tx_resp_time[15]=(uint8)(TBsyctime>>8);
-					dwt_forcetrxoff();
-					dwt_writetxdata(sizeof(tx_resp_time), tx_resp_time, 0); /* Zero offset in TX buffer. */
-					dwt_writetxfctrl(sizeof(tx_resp_time), 0, 0); /* Zero offset in TX buffer, ranging. */
-					dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
-					while(!isframe_sent);
-					isframe_sent=0;
-
-				}
-				else if(Que[front].buff[FUNCODE_IDX]==0x1A)//接受TOA数据
-				{
-						tagnumtmp=Que[front].buff[SOURADD];
-						tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
-						idx=Que[front].buff[FRAME_SN_IDX];
-						printf("TAG:%d No:%d\r\n",tagnumtmp,idx);
-						
-				}
-				else if(Que[front].buff[FUNCODE_IDX]==0x21)//TOA定位
-				{
-					printf("rec TOA\r\n");
-				}
-
-				
 				front=(front+1)%Que_Length;
 				Qcnt--;
 				
@@ -405,7 +255,7 @@ int main(void)
 
 
 		#elif defined TIMEBASE
-			//时钟基站的代码
+			//???????
 		while(!isframe_sent);
 		isframe_sent=0;
 		tx_timestamp=get_tx_timestamp_u64();
@@ -418,94 +268,228 @@ int main(void)
 		dwt_writetxfctrl(sizeof(TBPOLL), 0, 1); /* Zero offset in TX buffer, ranging. */
 		while(dwt_starttx(DWT_START_TX_DELAYED)!=DWT_SUCCESS);
 		#else
-			//从基站的程序代码
+			//????????
 		while(Qcnt)
 		{
-			tagnumtmp=Que[front].buff[SOURADD];
-			tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
-			if(tagnumtmp==0)
+			switch(Que[front].buff[FUNCODE_IDX])
 			{
-				//来自时钟基站的数据
-				if(Que[front].buff[FUNCODE_IDX]==0x80)
-				{
-					final_msg_set_ts(&dw_payloadbuff[PAYLOADTS_IDX], Que[front].rx_timestamp);
-					dw_payloadbuff[0]=Que[front].buff[SOURADD];
-					dw_payloadbuff[1]=Que[front].buff[SOURADD+1];
-					dw_payloadbuff[PAYLOOAD_WLIDX]=Que[front].buff[WLIDX];//在時鐘基站的數據裏面，這個是時鐘同步週期的值而不是佩戴信息
-					dw_payloadbuff[PAYLOOAD_WRIDX]=Que[front].buff[WRIDX];					
-					dw_txframe[FRAME_SN_IDX]=Que[front].buff[FRAME_SN_IDX];
-					while(Que[front].arrivetime+(ANCHOR_NUM-1)*2>msec);
-					dwt_forcetrxoff();
-					SentFrame_ack(dw_payloadbuff, 9, 1, 0x81);	
-				}
+				case 0x80:WirelessSyncDataProcess_SA();break;
+				case 0x10:DS_TwoWayRanging();break;
+				default:printf("unkonwn cmd\r\n");
 			}
-			else
-			{
-				//来自标签的数据
-				if(Que[front].buff[FUNCODE_IDX]==0x80)
-				{
-					final_msg_set_ts(&dw_payloadbuff[PAYLOADTS_IDX], Que[front].rx_timestamp);
-					dw_payloadbuff[0]=Que[front].buff[SOURADD];
-					dw_payloadbuff[1]=Que[front].buff[SOURADD+1];
-					dw_payloadbuff[PAYLOOAD_WLIDX]=Que[front].buff[WLIDX];
-					dw_payloadbuff[PAYLOOAD_WRIDX]=Que[front].buff[WRIDX];	
-					dw_txframe[FRAME_SN_IDX]=Que[front].buff[FRAME_SN_IDX];
-					while(Que[front].arrivetime+(ANCHOR_NUM-1)*2>msec);
-					dwt_forcetrxoff();
-					SentFrame_ack(dw_payloadbuff, 9, 1, 0x81);	
-				}
-			}
-
-			
-//			if(rx_buffer[FUNCODE_IDX]==0xA0)
-//			{
-//				
-//				rx_timestamp = get_rx_timestamp_u64();
-//				delayed_txtime=(rx_timestamp+(TXDELAYTIME_US<<16))>>8;
-//				dwt_setdelayedtrxtime(delayed_txtime);
-//				final_msg_set_ts(&dw_payloadbuff[PAYLOADTS_IDX], rx_timestamp);
-//				dw_payloadbuff[0]=(uint8)ANCHOR_NUM;
-//				dw_payloadbuff[1]=(uint8)(ANCHOR_NUM>>8);
-//				dw_txframe[FRAME_SN_IDX]=rx_buffer[FRAME_SN_IDX];
-//				SentFrame_ack(dw_payloadbuff, 7, 1, 0xA1);
-//			}
-//			else if(rx_buffer[FUNCODE_IDX]==0x80)
-//			{
-//				rx_timestamp = get_rx_timestamp_u64();
-//				delayed_txtime=(rx_timestamp+(TXDELAYTIME_US<<16))>>8;
-//				//dwt_setdelayedtrxtime(delayed_txtime);
-//				final_msg_set_ts(&dw_payloadbuff[PAYLOADTS_IDX], rx_timestamp);
-//				dw_payloadbuff[0]=rx_buffer[SOURADD];
-//				dw_payloadbuff[1]=rx_buffer[SOURADD+1];
-//				dw_txframe[FRAME_SN_IDX]=rx_buffer[FRAME_SN_IDX];
-//				Delay_ms((ANCHOR_NUM-1)*2);
-//				SentFrame_ack(dw_payloadbuff, 7, 1, 0x81);
-//				
-
-//			}
-//			else
-//			{
-
-//					//dwt_write8bitoffsetreg(SYS_CTRL_ID, SYS_CTRL_HRBT_OFFSET , 0x01) ;
-
-//			}
-
 			front=(front+1)%Que_Length;
 			Qcnt--;
 		}
 
 
 		#endif
-		
-
-		 
-		
-
 
     }			
 				
 	}
+/*========================================
+	??????????
+	========================================*/
+int WirelessSyncDataProcess_MA(void)
+{
+	uint16 anchnumtmp;
+	uint16 tagnumtmp;
+	uint8 idx=0,i=0,wearing=0;
+	if(Que[front].buff[FUNCODE_IDX]==0x80)//????????,0x80????????
+		{
+			tagnumtmp=Que[front].buff[SOURADD];
+			tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
+			anchnumtmp=ANCHOR_NUM;
+			rx_timestamp=Que[front].rx_timestamp;
+			idx=Que[front].buff[FRAME_SN_IDX];
+			if(tagnumtmp!=0)//??????????
+			{
+				wearing=0;
+				wearing|=(Que[front].buff[WLIDX])<<4;
+				wearing|=(Que[front].buff[WRIDX]);
+			}
+			else
+			{
+				TBsyctime=Que[front].buff[WLIDX];
+				TBsyctime+=Que[front].buff[WRIDX]<<8;
+			}
+		}
+		else if(Que[front].buff[FUNCODE_IDX]==0x81)
+		{
+			final_msg_get_ts(&Que[front].buff[RXBUFFTS_IDX], &rx_timestamp);
+			anchnumtmp=Que[front].buff[SOURADD];
+			anchnumtmp+=Que[front].buff[SOURADD+1]<<8;
+			tagnumtmp=Que[front].buff[TIMSTAMPS_OWNERID];
+			tagnumtmp+=(Que[front].buff[TIMSTAMPS_OWNERID+1]-128)<<8;
+			idx=Que[front].buff[FRAME_SN_IDX];
+			if(tagnumtmp!=0)
+			{
+				wearing=0;
+				wearing=(Que[front].buff[RXBUFF_WLIDX])<<4;
+				wearing=(Que[front].buff[RXBUFF_WRIDX]);
+			}				
+			else
+			{
+				TBsyctime=Que[front].buff[RXBUFF_WLIDX];
+				TBsyctime+=Que[front].buff[RXBUFF_WRIDX]<<8;
+			}
+		}
 
+		
+		if(tagnumtmp==0)
+		{
+			//??????
+			if(idxreco==-1)
+			{
+				idxreco=idx;
+			}
+			if(idx==idxreco)
+			{
+				AC_DATA[anchnumtmp-1].anchnum=anchnumtmp;
+				AC_DATA[anchnumtmp-1].tagnum=tagnumtmp;
+				AC_DATA[anchnumtmp-1].idx=idx;
+				AC_DATA[anchnumtmp-1].timestamp=rx_timestamp;	
+				AC_DATA[anchnumtmp-1].DATATYPE=0xaa;
+			}
+			else
+			{
+				while(DMA_transing);
+				HEAD.anchcnt=4;
+				HEAD.ADDR=1;
+				HEAD.CMD=0x02;
+				HEAD.LEN=sizeof(AC_DATA)+TAG_datacnt*sizeof(struct TG_DATA_str)+3;
+				HEAD.STX=0xfbfb;
+				HEAD.tagcnt=TAG_datacnt;
+				cacu_crc();
+				//usart_trans((uint8*)&HEAD,sizeof(HEAD));//???????,???????
+				start_DMA(TAG_datacnt);//????
+				while(DMA_transing);
+				fputc((int)crc,NULL);
+				crc=0;
+				memset(AC_DATA,0,sizeof(struct ANCHOR_TBDATA_str)*ANCHORCNT);
+				memset(TG_DATA,0,sizeof(struct TG_DATA_str)*TAG_datacnt);
+				
+				TAG_datacnt=0;
+				idxreco=idx;
+				AC_DATA[anchnumtmp-1].anchnum=anchnumtmp;
+				AC_DATA[anchnumtmp-1].tagnum=tagnumtmp;
+				AC_DATA[anchnumtmp-1].idx=idx;
+				AC_DATA[anchnumtmp-1].timestamp=rx_timestamp;
+				AC_DATA[anchnumtmp-1].DATATYPE=0xaa;
+				
+			}
+
+		}
+		else//??????
+		{
+			for(i=0;i<TGDATA_BUFFLEN;i++)
+			{
+				if((TG_DATA[i].tagnum==tagnumtmp)&&(TG_DATA[i].idx==idx))
+				{//?????????????
+					TG_DATA[i].validcnt|=1<<(anchnumtmp-1);
+					TG_DATA[i].anchTS[anchnumtmp-1]=rx_timestamp;
+					TG_DATA[i].wearIDCA|=wearing;
+					break;
+				}
+				else if(TG_DATA[i].tagnum==0)
+				{//??????????
+					TG_DATA[i].tagnum=tagnumtmp;
+					TG_DATA[i].idx=idx;
+					TG_DATA[i].validcnt|=1<<(anchnumtmp-1);
+					TG_DATA[i].anchTS[anchnumtmp-1]=rx_timestamp;
+					TG_DATA[i].DATATYPE=0xbb;
+					TG_DATA[i].wearIDCA|=wearing;
+					#ifdef MPUUSING
+					if(anchnumtmp==1)
+					{
+						memcpy(TG_DATA[i].MPUdata,Que[front].buff+12,112);
+					}
+					#endif
+					TAG_datacnt++;
+					
+					break;
+				}							
+				
+			}
+			
+			
+		}
+		return 0;
+}
+int WirelessSyncDataProcess_SA(void)
+{
+	uint16 tagnumtmp;
+	tagnumtmp=Que[front].buff[SOURADD];
+	tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
+	if(tagnumtmp==0)
+	{
+		//?????????
+		final_msg_set_ts(&dw_payloadbuff[PAYLOADTS_IDX], Que[front].rx_timestamp);
+		dw_payloadbuff[0]=Que[front].buff[SOURADD];
+		dw_payloadbuff[1]=Que[front].buff[SOURADD+1];
+		dw_payloadbuff[PAYLOOAD_WLIDX]=Que[front].buff[WLIDX];//??????????,??????????????????
+		dw_payloadbuff[PAYLOOAD_WRIDX]=Que[front].buff[WRIDX];					
+		dw_txframe[FRAME_SN_IDX]=Que[front].buff[FRAME_SN_IDX];
+		while(Que[front].arrivetime+(ANCHOR_NUM-1)*2>msec);
+		dwt_forcetrxoff();
+		SentFrame_ack(dw_payloadbuff, 9, 1, 0x81);	
+		
+	}
+	else
+	{
+		//???????
+		final_msg_set_ts(&dw_payloadbuff[PAYLOADTS_IDX], Que[front].rx_timestamp);
+		dw_payloadbuff[0]=Que[front].buff[SOURADD];
+		dw_payloadbuff[1]=Que[front].buff[SOURADD+1];
+		dw_payloadbuff[PAYLOOAD_WLIDX]=Que[front].buff[WLIDX];
+		dw_payloadbuff[PAYLOOAD_WRIDX]=Que[front].buff[WRIDX];	
+		dw_txframe[FRAME_SN_IDX]=Que[front].buff[FRAME_SN_IDX];
+		while(Que[front].arrivetime+(ANCHOR_NUM-1)*2>msec);
+		dwt_forcetrxoff();
+		SentFrame_ack(dw_payloadbuff, 9, 1, 0x81);	
+		
+	}
+	return 0;
+}
+int AssignTimeWindow(void)
+{
+
+	tx_resp_time[DESTADD]=Que[front].buff[SOURADD];
+	tx_resp_time[DESTADD+1]=Que[front].buff[SOURADD+1];
+	tx_resp_time[10]=(uint8)(msec);
+	tx_resp_time[11]=(uint8)(msec>>8);
+	tx_resp_time[12]=(uint8)(msec>>16);
+	tx_resp_time[13]=(uint8)(msec>>24);
+	tx_resp_time[14]=(uint8)(TBsyctime);
+	tx_resp_time[15]=(uint8)(TBsyctime>>8);
+	dwt_forcetrxoff();
+	dwt_writetxdata(sizeof(tx_resp_time), tx_resp_time, 0); /* Zero offset in TX buffer. */
+	dwt_writetxfctrl(sizeof(tx_resp_time), 0, 0); /* Zero offset in TX buffer, ranging. */
+	dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
+	while(!isframe_sent);
+	isframe_sent=0;
+	return 0;
+}
+
+int TOAdata_process(void)
+{
+	uint16 tagnumtmp;
+	uint8 idx=0;
+	tagnumtmp=Que[front].buff[SOURADD];
+	tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
+	idx=Que[front].buff[FRAME_SN_IDX];
+	printf("TAG:%d No:%d\r\n",tagnumtmp,idx);
+	return 0;
+}
+
+int DS_TwoWayRanging(void)
+{
+	printf("rec toa\r\n");
+	return 0;
+}
+/*========================================
+	
+	========================================*/
 void reset_DW1000(void)
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
@@ -532,7 +516,7 @@ void reset_DW1000(void)
   Delay_ms(5);
 }
 
-//使能自動重啓接收器
+//?????????
 void dw_setARER(int enable)
 {
 	uint32 syscfg;
@@ -556,17 +540,17 @@ void TIM7_init(void)
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
   NVIC_InitTypeDef NVIC_InitStructure;
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM7, ENABLE);
-	TIM_TimeBaseStructure.TIM_Period = 5000; //设置在下一个更新事件装入活动的自动重装载寄存器周期的值    计数到5000为500ms
-  TIM_TimeBaseStructure.TIM_Prescaler =4800-1; //设置用来作为TIMx时钟频率除数的预分频值  10Khz的计数频率  
-  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //设置时钟分割:TDTS = Tck_tim
-  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM向上计数模式
+	TIM_TimeBaseStructure.TIM_Period = 5000; //???????????????????????????    ???5000?500ms
+  TIM_TimeBaseStructure.TIM_Prescaler =4800-1; //??????TIMx???????????  10Khz?????  
+  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //??????:TDTS = Tck_tim
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIM??????
 	TIM_TimeBaseInit(TIM7, &TIM_TimeBaseStructure);
   TIM_ITConfig(TIM7, TIM_IT_Update , ENABLE);
      
   NVIC_InitStructure.NVIC_IRQChannel = TIM7_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPriority = 1;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
-  NVIC_Init(&NVIC_InitStructure);  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ?????
+  NVIC_Init(&NVIC_InitStructure);  //??NVIC_InitStruct???????????NVIC???
 	TIM_Cmd(TIM7, ENABLE);
 }
 
@@ -630,8 +614,8 @@ void DMA_init(void)
 	DMA_ITConfig(DMA1_Channel2,DMA_IT_TC,ENABLE);
 	NVIC_InitStructure.NVIC_IRQChannel = DMA1_Channel2_3_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPriority = 3;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
-  NVIC_Init(&NVIC_InitStructure);  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ?????
+  NVIC_Init(&NVIC_InitStructure);  //??NVIC_InitStruct???????????NVIC???
 
 	//DMA_Cmd(DMA1_Channel2, ENABLE);
 	//while(!DMA_GetFlagStatus(DMA1_FLAG_TC2));
@@ -655,10 +639,8 @@ void cacu_crc(void)
 {
 	uint8 *pointerP;
 	uint16 len;
-	uint16 i;
 	pointerP=(uint8*)&HEAD.ADDR;
 	len=HEAD.LEN+1;	
-	
 
 	CRC_ResetDR();
 
@@ -772,4 +754,3 @@ void SWITCH_DB(void)
  *     DW1000 API Guide for more details on the DW1000 driver functions.
  */
  
-

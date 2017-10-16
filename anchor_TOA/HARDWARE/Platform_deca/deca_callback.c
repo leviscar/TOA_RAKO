@@ -45,14 +45,8 @@ void tx_conf_cb(const dwt_cb_data_t *cb_data)
 void rx_ok_cb(const dwt_cb_data_t *cb_data)
 {
 	uint16 frame_len;
-	uint32 status;
-	uint8 systime[5];
 	uint8 rtxtimes=0;
-		uint8 fctrl[2];
-	uint32 delayed_txtime;
 	frame_len=cb_data->datalength;
-	status=cb_data->status;
-	
 
 	#ifdef MAIN_ANCHOR
 	if (frame_len <= RX_BUF_LEN)
@@ -66,10 +60,6 @@ void rx_ok_cb(const dwt_cb_data_t *cb_data)
 						
 			if(cb_data->status&SYS_STATUS_AAT)
 			{
-//				dwt_readrxdata(ACKframe+2, 1, 2);
-//				dwt_writetxdata(5, ACKframe, 0);
-//				dwt_writetxfctrl(5, 0, 0);
-//				while(dwt_starttx(DWT_START_TX_IMMEDIATE)!=DWT_SUCCESS);
 				while (!(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS ));
 				dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
 				dwt_forcetrxoff(); 
@@ -92,20 +82,10 @@ void rx_ok_cb(const dwt_cb_data_t *cb_data)
 
 		
 	}
-//	if(status & SYS_STATUS_AAT)
-//	{
-//		while(dwt_read32bitreg(SYS_STATUS_ID)&SYS_STATUS_TXPRS);
-//		dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_TX);
-//		
-//	}
 
 	dwt_rxenable(DWT_START_RX_IMMEDIATE);
 	
-//	if((rx_buffer[0]&0x07)==0x01)//data frame
-//	{
-//		isframe_rec=1;
-//	}
-//	
+
 	#else
 	//从基站回调处理
 	if (frame_len <= RX_BUF_LEN)
@@ -119,9 +99,10 @@ void rx_ok_cb(const dwt_cb_data_t *cb_data)
 			
 			if(cb_data->status&SYS_STATUS_AAT)
 			{
-				while (!((status = dwt_read32bitreg(SYS_STATUS_ID)) & SYS_STATUS_TXFRS));
+				while (!(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS ));
 				dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
-
+				dwt_forcetrxoff(); 
+        dwt_rxreset(); 
 			}
 			isframe_rec=1;
 			if(Qcnt<=Que_Length)
