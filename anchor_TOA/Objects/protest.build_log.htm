@@ -1,0 +1,132 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.22.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Roger Roger, Roger, LIC=0VR63-ALYMU-PFRIX-HN54F-C3LTW-E7M2D
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.22
+Toolchain Path:  D:\Program Files\keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.22
+Dialog DLL:      DARMCM1.DLL V1.15.0.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
+Dialog DLL:      TARMCM1.DLL V1.11.0.0
+ 
+<h2>Project:</h2>
+F:\STM32_Projects\Cube\anchor_TOA\protest.uvprojx
+Project File Date:  10/13/2017
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\Program Files\keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'Target 1'
+compiling usart_v1.c...
+HARDWARE\USART\usart_v1.c(155): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
+                fputc((int)(*p),
+ULL);
+HARDWARE\USART\usart_v1.c(158): warning:  #1-D: last line of file ends without a newline
+  }
+HARDWARE\USART\usart_v1.c: 2 warnings, 0 errors
+compiling spi_v1.c...
+compiling EXTI_v1.c...
+compiling deca_sleep.c...
+compiling deca_mutex.c...
+compiling deca_spi.c...
+compiling deca_callback.c...
+HARDWARE\Platform_deca\deca_callback.c(48): warning:  #550-D: variable "status"  was set but never used
+        uint32 status;
+HARDWARE\Platform_deca\deca_callback.c(49): warning:  #177-D: variable "systime"  was declared but never referenced
+        uint8 systime[5];
+HARDWARE\Platform_deca\deca_callback.c(50): warning:  #177-D: variable "rtxtimes"  was declared but never referenced
+        uint8 rtxtimes=0;
+HARDWARE\Platform_deca\deca_callback.c(51): warning:  #177-D: variable "fctrl"  was declared but never referenced
+                uint8 fctrl[2];
+HARDWARE\Platform_deca\deca_callback.c(52): warning:  #177-D: variable "delayed_txtime"  was declared but never referenced
+        uint32 delayed_txtime;
+HARDWARE\Platform_deca\deca_callback.c: 5 warnings, 0 errors
+compiling LED.c...
+compiling rf24l01.c...
+HARDWARE\NRF24L01\rf24l01.c(265): warning:  #550-D: variable "fifo_state"  was set but never used
+        uint8_t fifo_state;
+HARDWARE\NRF24L01\rf24l01.c(289): warning:  #550-D: variable "fifo_state"  was set but never used
+        uint8_t fifo_state;
+HARDWARE\NRF24L01\rf24l01.c: 2 warnings, 0 errors
+compiling Deca_user_api.c...
+HARDWARE\Platform_deca\Deca_user_api.c(13): warning:  #177-D: variable "statetmp"  was declared but never referenced
+        uint32 statetmp;
+HARDWARE\Platform_deca\Deca_user_api.c(14): warning:  #177-D: variable "systim"  was declared but never referenced
+        uint8 systim[5];
+HARDWARE\Platform_deca\Deca_user_api.c: 2 warnings, 0 errors
+compiling main.c...
+USER\main.c(315): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
+                                                        fputc((int)crc,
+ULL);
+USER\main.c(140): warning:  #177-D: variable "time"  was declared but never referenced
+        uint32 time;
+USER\main.c(142): warning:  #177-D: variable "status"  was declared but never referenced
+        uint32 status;
+USER\main.c(143): warning:  #177-D: variable "delayed_txtime"  was declared but never referenced
+        uint32 delayed_txtime;
+USER\main.c(147): warning:  #177-D: variable "MPUdataidx"  was declared but never referenced
+        uint8 MPUdataidx;
+USER\main.c(148): warning:  #177-D: variable "systim1"  was declared but never referenced
+        uint8 systim1[5];
+USER\main.c(149): warning:  #177-D: variable "systim2"  was declared but never referenced
+        uint8 systim2[5];
+USER\main.c(150): warning:  #177-D: variable "Tocnt"  was declared but never referenced
+        uint8 Tocnt=0;
+USER\main.c(658): warning:  #177-D: variable "i"  was declared but never referenced
+        uint16 i;
+USER\main.c: 9 warnings, 0 errors
+compiling delay.c...
+compiling test_fun.c...
+compiling stm32f0xx_exti.c...
+compiling stm32f0xx_gpio.c...
+compiling stm32f0xx_misc.c...
+compiling stm32f0xx_rcc.c...
+compiling stm32f0xx_spi.c...
+compiling stm32f0xx_syscfg.c...
+compiling stm32f0xx_tim.c...
+compiling stm32f0xx_usart.c...
+compiling stm32f0xx_flash.c...
+compiling stm32f0xx_pwr.c...
+compiling stm32f0xx_dma.c...
+compiling stm32f0xx_crc.c...
+compiling stm32f0xx_it.c...
+compiling system_stm32f0xx.c...
+assembling startup_stm32f072.s...
+compiling usmart.c...
+compiling usmart_config.c...
+compiling usmart_str.c...
+compiling deca_device.c...
+HARDWARE\decadriver\deca_device.c(1356): warning:  #68-D: integer conversion resulted in a change of sign
+          return 
+WT_ERROR;
+HARDWARE\decadriver\deca_device.c(1489): warning:  #68-D: integer conversion resulted in a change of sign
+          return 
+WT_ERROR;
+HARDWARE\decadriver\deca_device.c(2120): warning:  #177-D: variable "systime"  was declared but never referenced
+  uint8 systime[5];
+HARDWARE\decadriver\deca_device.c: 3 warnings, 0 errors
+compiling deca_params_init.c...
+linking...
+Program Size: Code=18052 RO-data=764 RW-data=648 ZI-data=5048  
+FromELF: creating hex file...
+".\Objects\protest.axf" - 0 Error(s), 23 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  F:\STM32_Projects\Cube\anchor_TOA\RTE\_Target_1
+  D:\Program Files\keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:22
+</pre>
+</body>
+</html>
