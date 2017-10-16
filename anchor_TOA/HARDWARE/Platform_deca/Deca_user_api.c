@@ -10,8 +10,6 @@ int SentFrame_ack(uint8 *buff, uint16 bufflen, uint16 targetID, uint8 Funcode)
 {
 	uint8 rtxtimes=0;
 	 __IO uint32_t time=0;
-	uint32 statetmp;
-	uint8 systim[5];
 	isframe_sent=0;
 	istxframe_acked=0;
 	isreceive_To=0;
