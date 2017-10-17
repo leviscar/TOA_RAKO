@@ -31,6 +31,7 @@ extern volatile uint8 istxframe_acked;
 extern volatile uint8 isreceive_To;
 extern volatile uint8 isframe_rec;
 extern volatile uint8 isack_sent;
+extern volatile uint8 TOARanging;
 extern uint64 tx_timestamp;
 extern uint64 rx_timestamp;
 extern uint8 dw_txframe[];

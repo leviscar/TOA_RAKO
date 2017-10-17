@@ -1,5 +1,7 @@
 #include "Testing.h"
-
+uint32 time_record;
+uint32 time_stack[10];
+uint16 timestack_cnt=0;
 void NRF_Test(uint8_t cmd)
 {
 	uint8_t state;
@@ -79,4 +81,16 @@ void Read_status(void)
 	uint32 status_reg;
 	status_reg = dwt_read32bitreg(SYS_STATUS_ID);
 	printf("0x%lx\r\n",status_reg);
+}
+
+void SET_Tpoint(void)
+{
+	time_record=dwt_readsystimestamphi32();
+}
+void GET_Time2Tpoint(void)
+{
+	uint32 timetmp;
+	timetmp=dwt_readsystimestamphi32();
+	time_stack[timestack_cnt++]=timetmp-time_record;//低九位为常0，寄存器40位分辨率15.65ps，高32位字节分辨率4.006ns
+	
 }

@@ -40,7 +40,7 @@
 #include "I2C.h"
 #include "dw1000.h"
 #include "deca_callback.h"
-
+#include "testing.h"
 
 
 /* USER CODE END Includes */
@@ -98,8 +98,8 @@ static void EXTI2_3_IRQHandler_Config(void);
 static void EXTI0_1_IRQHandler_Config(void);
 void dw_setARER(int enable);
 void dw_closeack(void);
-int twoway_ranging(uint16 base_addr,float *dis);
-int send2MainAnch(float *data,int len);
+int twoway_ranging(uint16 base_addr,double *dis);
+int send2MainAnch(double *data,int len);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -121,8 +121,9 @@ unsigned int localtime=0;//本地时间
 uint8_t usart_rx_buff[64];//串口buff
 uint8 tx_poll_time[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x2B, 0, 0};//用来查询时间戳的
 uint8 tx_poll_msg[PLLMSGLEN] = {0x41, 0x88, 0, 0xCA, 0xDE, 0xFF, 0xFF, 0, 0, 0x80, 0, 0};//時鐘同步時進行廣播閃爍的
-uint8 tx_TOAdata[TOA_MSG_LEN]={0x61,0x88,0,0xCA, 0xDE,0x01, 0x00, 0x00, 0x00,0x1a,0,0};//发送TOA数据
 
+
+	
 uint8 dw_txseq_num=1;
 usart_bitfield USART_STA={
 	0,
@@ -185,7 +186,7 @@ int main(void)
 	uint8_t tmp_buf[12];
 	uint8_t i,j,key,flag,MPUdatacnt=0;
 	uint8 cnt_toa=0;
-	float dis[QUANTITY_ANCHOR];
+	double dis[QUANTITY_ANCHOR];
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -273,7 +274,7 @@ int main(void)
 	dwt_setinterrupt(DWT_INT_ALLERR|DWT_INT_TFRS|DWT_INT_RFCG|DWT_INT_RFTO,1);//开启中断
 	dwt_setrxaftertxdelay(0);
 	dwt_setrxtimeout(0);
-	
+	dwt_setpreambledetecttimeout(8);//需要查驗，不確定效果
 	
 //	lp_osc_freq = (XTAL_FREQ_HZ / 2) / dwt_calibratesleepcnt();
 //	sleep_cnt = ((SLEEP_TIME_MS * lp_osc_freq) / 1000) >> 12;	
@@ -682,22 +683,151 @@ void POLL_TimeWindow(void)
 /*
 
 */
-int twoway_ranging(uint16 base_addr,float *dis)//單次測距函數
+int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
 {
-	*dis=0;
-	return 0;
-}
-int send2MainAnch(float *data,int len)//發送數據給主機站
-{
+	//虽然这些数据很多，但是默认栈有1kb，所以不会有什么问题
 	uint16 tagid=TAG_ID;
+	uint8 TimeOutCNT=0;
+	uint32 delayed_resp_time;
+	uint64 poll_rx_ts, resp_tx_ts, final_rx_ts;
+	uint64 poll_tx_ts, resp_rx_ts, final_tx_ts;
+	double Ra,Rb,Da,Db;
+	int ret;
+	long long tof_dtu;
+	double tof;
+	uint8 tx_TOAbuff[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x00, 0x00, 0x10};//TOA定位所使用的buff
+	
+	HAULT_POINT
+	tx_TOAbuff[DESTADD]=(uint8)base_addr;
+	tx_TOAbuff[DESTADD+1]=(uint8)(base_addr>>8);
+	tx_TOAbuff[SOURADD]=(uint8)tagid;
+	tx_TOAbuff[SOURADD+1]=(uint8)(tagid>>8);
+	tx_TOAbuff[0]=0x61;//请求应答
+	dwt_setrxtimeout(1000);//设置接受超时
+	dwt_writetxdata(12, tx_TOAbuff, 0);//发起定位请求
+	dwt_writetxfctrl(12, 0, 0);
+	SET_Tpoint();//SET POINT
+	do
+	{
+		ret=dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
+		if(ret == DWT_ERROR)
+		{
+			*distance=0;
+			return -2;	
+		}
+		while(!isframe_sent);
+		isframe_sent=0;	
+		while(!isreceive_To&&!istxframe_acked);
+		if(isreceive_To==1)
+		{
+			printf("wait 4 ack Time out\r\n");
+			isreceive_To=0;
+			TimeOutCNT++;
+		}
+		if(TimeOutCNT==5)
+		{
+			*distance=0;
+			goto error1;			
+		}
+	}while(istxframe_acked!=1);
+	istxframe_acked=0;
+	TimeOutCNT=0;
+	GET_Time2Tpoint();
+	
+	dwt_setrxtimeout(10000);//设置接受超时
+	SET_Tpoint();//SET POINT
+	do
+	{
+		dwt_rxenable(DWT_START_RX_IMMEDIATE);
+		while(!isreceive_To&&!isframe_rec);
+		if(isreceive_To==1)
+		{
+			printf("Time out\r\n");
+			isreceive_To=0;
+			TimeOutCNT++;
+		}
+		if(TimeOutCNT==1)
+		{
+			*distance=0;
+			goto error1;			
+		}
+	}while(isframe_rec);
+	isframe_rec=0;//接受到第一次数据
+	GET_Time2Tpoint();
+	SET_Tpoint();//SET POINT
+	poll_rx_ts = get_rx_timestamp_u64();
+	delayed_resp_time = (poll_rx_ts + (RESP_TX_DELAYED_UUS * UUS_TO_DWT_TIME)) >> 8;
+  dwt_setdelayedtrxtime(delayed_resp_time);
+	
+	tx_TOAbuff[0]=0x41;//不需要應答
+	tx_TOAbuff[FUNCODE_IDX]=0x12;
+	dwt_setrxaftertxdelay(0);//here some value can be set to reduce power consumption
+	dwt_setrxtimeout(1000);	
+	dwt_writetxdata(12, tx_TOAbuff, 0);//
+	dwt_writetxfctrl(12, 0, 1);	
+	GET_Time2Tpoint();
+	
+	ret = dwt_starttx(DWT_START_TX_DELAYED | DWT_RESPONSE_EXPECTED);
+	if(ret == DWT_ERROR)
+	{
+			*distance=0;
+			goto error2;
+	}
+	while(!isframe_sent);
+	isframe_sent=0;	
+	while(!isreceive_To&&!isframe_rec);
+	if(isreceive_To==1)
+	{
+			isreceive_To=0;
+			*distance=0;
+			goto error1;
+	}
+	isframe_rec=0;
+	resp_tx_ts = get_tx_timestamp_u64();
+	final_rx_ts = get_rx_timestamp_u64();
+	
+	time_stack[timestack_cnt++]=resp_tx_ts-final_rx_ts;//SET POINT
+	final_msg_get_ts(&rx_buffer[FINAL_MSG_POLL_TX_TS_IDX], &poll_tx_ts);
+	final_msg_get_ts(&rx_buffer[FINAL_MSG_RESP_RX_TS_IDX], &resp_rx_ts);
+	final_msg_get_ts(&rx_buffer[FINAL_MSG_FINAL_TX_TS_IDX], &final_tx_ts);
+	
+	Ra = (double)(resp_rx_ts - poll_tx_ts);
+	Rb = (double)(final_rx_ts - resp_tx_ts);
+	Da = (double)(final_tx_ts - resp_rx_ts);
+	Db = (double)(resp_tx_ts - poll_rx_ts);
+	tof_dtu = (long long)((Ra * Rb - Da * Db) / (Ra + Rb + Da + Db));
+	
+	tof = tof_dtu * DWT_TIME_UNITS;
+  *distance = tof * SPEED_OF_LIGHT;
+	while(timestack_cnt)
+	{
+		double tmp=(double)time_stack[timestack_cnt-1]*4/1000;
+		printf("%d:%f ms \r\n",timestack_cnt--,tmp);
+	}
+	HAULT_POINT
+	return 0;
+error1:
+	HAULT_POINT
+	return -1;
+error2:
+	HAULT_POINT
+	return -2;
+}
+
+
+int send2MainAnch(double *data,int len)//發送數據給主機站
+{
+	uint8 tx_TOAdata[TOA_MSG_LEN]={0x61,0x88,0,0xCA, 0xDE,0x01, 0x00, 0x00, 0x00,0x1a};//发送TOA数据
+	uint16 tagid=TAG_ID;
+	uint16 TimeOutCNT=0;
 	tx_TOAdata[SOURADD]=(uint8)tagid;
 	tx_TOAdata[SOURADD+1]=(uint8)(tagid>>8);
 	tx_TOAdata[FRAME_IDX]=dw_txseq_num++;;
-	memcpy(tx_TOAdata+TOA_DATA_IDX,data,len*QUANTITY_ANCHOR);
+	memcpy(tx_TOAdata+TOA_DATA_IDX,data,len*sizeof(double));
 	dwt_writetxdata(TOA_MSG_LEN, tx_TOAdata, 0);
 	dwt_writetxfctrl(TOA_MSG_LEN, 0, 0);
-	dwt_setrxtimeout(10000);//设置接受超时
-	
+	dwt_setrxtimeout(500);//设置接受超时
+	TimeOutCNT=0;
 	do
 	{
 		dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
@@ -708,10 +838,12 @@ int send2MainAnch(float *data,int len)//發送數據給主機站
 		{
 			printf("wait 4 ack Time out\r\n");
 			isreceive_To=0;
-//			while(!triggle);
-//			triggle=0;
+			TimeOutCNT++;
 		}
-		
+		if(TimeOutCNT==3)
+		{
+			return -1;			
+		}
 	}while(istxframe_acked!=1);
 	istxframe_acked=0;	
 	printf("acked\r\n");

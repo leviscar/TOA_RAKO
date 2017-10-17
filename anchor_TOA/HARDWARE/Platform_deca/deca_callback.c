@@ -17,6 +17,7 @@ volatile uint8 istxframe_acked=0;
 volatile uint8 isreceive_To=0;
 volatile uint8 isframe_rec=0;
 volatile uint8 isack_sent=0;
+volatile uint8 TOARanging=0;
 
 void tx_conf_cb(const dwt_cb_data_t *cb_data)
 {
@@ -27,20 +28,16 @@ void tx_conf_cb(const dwt_cb_data_t *cb_data)
      * dwt_setcallbacks(). The ISR will not call it which will allow to save some interrupt processing time. */
 
     /* TESTING BREAKPOINT LOCATION #4 */
-		if(cb_data->status & SYS_STATUS_AAT)
-		{
-				isack_sent=1;
-		}
-		else
-		{
-				isframe_sent=1;
-		}
+//		if(cb_data->status & SYS_STATUS_AAT)
+//		{
+//				isack_sent=1;
+//		}
+//		else
+//		{
+//				isframe_sent=1;
+//		}
 
-	
-	
-
-	
-
+	isframe_sent=1; //since AAT is processed in rx_ok_cb, there is no need to handle in this cb.
 }
 void rx_ok_cb(const dwt_cb_data_t *cb_data)
 {
@@ -67,15 +64,24 @@ void rx_ok_cb(const dwt_cb_data_t *cb_data)
 				
 			}
 			isframe_rec=1;
-			if(Qcnt<=Que_Length)
+			
+			if(TOARanging)//处于toa定位流程中的时候不适合使用队列
 			{
-				dwt_readrxdata(Que[rear].buff, frame_len, 0);
-				if(Que[rear].buff[FUNCODE_IDX]==0x80)
+				dwt_readrxdata(Que[front].buff, frame_len, 0);
+				Que[front].rx_timestamp=get_rx_timestamp_u64();
+			}
+			else
+			{
+				if(Qcnt<=Que_Length)
 				{
-					Que[rear].rx_timestamp=get_rx_timestamp_u64();
+					dwt_readrxdata(Que[rear].buff, frame_len, 0);
+					if(Que[rear].buff[FUNCODE_IDX]==0x80)
+					{
+						Que[rear].rx_timestamp=get_rx_timestamp_u64();
+					}
+					rear=(rear+1)%Que_Length;
+					Qcnt++;
 				}
-				rear=(rear+1)%Que_Length;
-				Qcnt++;
 			}
 			isframe_rec=0;
 		}
@@ -105,81 +111,35 @@ void rx_ok_cb(const dwt_cb_data_t *cb_data)
         dwt_rxreset(); 
 			}
 			isframe_rec=1;
-			if(Qcnt<=Que_Length)
+			if(TOARanging)//处于toa定位流程中的时候不适合使用队列
 			{
-				Que[rear].arrivetime=msec;
-				dwt_readrxdata(Que[rear].buff, frame_len, 0);
-				if(Que[rear].buff[FUNCODE_IDX]==0x80)
-				{
-				Que[rear].rx_timestamp=get_rx_timestamp_u64();
-				}
-				rear=(rear+1)%Que_Length;
-				Qcnt++;
+				dwt_readrxdata(Que[front].buff, frame_len, 0);
+				Que[front].rx_timestamp=get_rx_timestamp_u64();
 			}
+			else
+			{
+				if(Qcnt<=Que_Length)
+				{
+					Que[rear].arrivetime=msec;
+					dwt_readrxdata(Que[rear].buff, frame_len, 0);
+					if(Que[rear].buff[FUNCODE_IDX]==0x80)
+					{
+					Que[rear].rx_timestamp=get_rx_timestamp_u64();
+					}
+					rear=(rear+1)%Que_Length;
+					Qcnt++;
+				}
+				
+			}
+			
 			isframe_rec=0;
 		}
 
 		
 	}
 	dwt_rxenable(DWT_START_RX_IMMEDIATE);
-//	if (frame_len <= RX_BUF_LEN)
-//	{
-//		dwt_readrxdata(rx_buffer, frame_len, 0);
-//	}
-//	
-//	if ((rx_buffer[0] == ACK_FC_0) && (rx_buffer[1] == ACK_FC_1))
-//    {
-//			if(rx_buffer[FRAME_SN_IDX] == dw_txframe[FRAME_SN_IDX])
-//			{
-//				istxframe_acked = 1;
-//			}
-//			else
-//			{
-//				dwt_rxenable(DWT_START_RX_IMMEDIATE);
-//			}
 
-//			
-//    }
-//	else	if((rx_buffer[0]&0x07)==0x01)//data frame
-//	{
-
-
-//		if(cb_data->status&SYS_STATUS_AAT)
-//		{
-//			while (!((status = dwt_read32bitreg(SYS_STATUS_ID)) & SYS_STATUS_TXFRS));
-//			dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
-
-//		}
-//		
-
-//			isframe_rec=1;
-
-//	
-//	}
-	#endif	/* Check if it is the expected ACK. */
-	
-	
-	//since the flagbit has been cleared in dw_isr, there is no need to do again. but mask isn't clear in dw_isr
-	//before clearence ,so glitches may occure.need attention.
-	
-//    // Need to make sure that the host/IC buffer pointers are aligned before starting RX
-//    tmp = dwt_read8bitoffsetreg(SYS_STATUS_ID, 3); // Read 1 byte at offset 3 to get the 4th byte out of 5
-
-//    if((tmp & (SYS_STATUS_ICRBP >> 24)) ==     // IC side Receive Buffer Pointer
-//       ((tmp & (SYS_STATUS_HSRBP>>24)) << 1) ) // Host Side Receive Buffer Pointer
-//    {
-//      statetmp=dwt_read32bitreg(SYS_MASK_ID);
-//			statetmp&=~(SYS_STATUS_RXFCG|SYS_STATUS_LDEDONE|SYS_STATUS_RXDFR|SYS_STATUS_RXFCE);
-//			dwt_write32bitreg(SYS_MASK_ID, statetmp);//disable interrupt
-//			dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG|SYS_STATUS_LDEDONE|SYS_STATUS_RXDFR|SYS_STATUS_RXFCE);//clear status bits
-//			statetmp|=(SYS_STATUS_RXFCG|SYS_STATUS_LDEDONE|SYS_STATUS_RXDFR|SYS_STATUS_RXFCE);
-//			dwt_write32bitreg(SYS_MASK_ID, statetmp);//enable interrupt
-//			//dwt_write8bitoffsetreg(SYS_CTRL_ID, SYS_CTRL_HRBT_OFFSET , 0x01) ; // We need to swap RX buffer status reg (write one to toggle internally)
-//    }
-//		else
-//		{
-//			//dwt_write8bitoffsetreg(SYS_CTRL_ID, SYS_CTRL_HRBT_OFFSET , 0x01) ; // We need to swap RX buffer status reg (write one to toggle internally)
-//		}
+	#endif	
 
 }
 

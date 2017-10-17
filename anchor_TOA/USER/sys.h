@@ -24,7 +24,6 @@ typedef unsigned long long uint64;
 #define TIMSTAMPS_OWNERID 10
 #define RXBUFFTS_IDX 12
 #define PAYLOADTS_IDX 2
-#define FINAL_MSG_TS_LEN 5
 #define WLIDX 10
 #define WRIDX 11
 #define PAYLOOAD_WLIDX 7
@@ -35,29 +34,12 @@ typedef unsigned long long uint64;
 /* UWB microsecond (uus) to device time unit (dtu, around 15.65 ps) conversion factor.
  * 1 uus = 512 / 499.2 ? and 1 ? = 499.2 * 128 dtu. */
 #define UUS_TO_DWT_TIME 65536
-
-
-/* Delay between frames, in UWB microseconds. See NOTE 1 below. */
-
-/* This is the delay from the end of the frame transmission to the enable of the receiver, as programmed for the DW1000's wait for response feature. */
-#define POLL_TX_TO_RESP_RX_DLY_UUS 0//这是init第一次延迟打开接受器的时间，和POLL_RX_TO_RESP_TX_DLY_UUS相关
-/* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW1000's delayed TX function. This includes the
- * frame length of approximately  ms with above configuration. */
-#define RESP_RX_TO_FINAL_TX_DLY_UUS 30000//延迟发射的时间
-/* Receive response timeout. See NOTE 5 below. */
-#define RESP_RX_TIMEOUT_UUS 0//3500 超时时间
-
-/* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW1000's delayed TX function. This includes the
-* frame length of approximately  ns with above configuration. */
-#define POLL_RX_TO_RESP_TX_DLY_UUS 20000//延迟发射的时间
-/* This is the delay from the end of the frame transmission to the enable of the receiver, as programmed for the DW1000's wait for response feature. */
-#define RESP_TX_TO_FINAL_RX_DLY_UUS 0//這是resp接受到第一次信息之後，返回發送后接收器的延遲打開時間，和RESP_RX_TO_FINAL_TX_DLY_UUS有關
-/* Receive final timeout. See NOTE 5 below. */
-#define FINAL_RX_TIMEOUT_UUS 0//3300
-/* Preamble timeout, in multiple of PAC size. See NOTE 6 below. */
-#define PRE_TIMEOUT 8
-
-
+#define FINAL_MSG_POLL_TX_TS_IDX 10
+#define FINAL_MSG_RESP_RX_TS_IDX 15
+#define FINAL_MSG_FINAL_TX_TS_IDX 20
+#define FINAL_MSG_TS_LEN 5
+#define DWT_TIME_UNITS     (1.0/499.2e6/128.0)
+#define INIT_TX_DELAYED_TIME_UUS 3100
 /* Speed of light in air, in metres per second. */
 #define SPEED_OF_LIGHT 299702547
 /* Length of the common part of the message (up to and including the function code, see NOTE 3 below). */
@@ -80,6 +62,7 @@ typedef unsigned long long uint64;
 	#define SYNCIDX 6
 #endif
 #define NRFQUELen 50
+
 
 extern  __IO uint32_t msec;
 

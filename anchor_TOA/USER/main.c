@@ -236,6 +236,7 @@ int main(void)
 
 		 while(Qcnt)
 			{
+				
 				switch(Que[front].buff[FUNCODE_IDX])
 					{
 						case 0x80:WirelessSyncDataProcess_MA();break;
@@ -483,6 +484,75 @@ int TOAdata_process(void)
 
 int DS_TwoWayRanging(void)
 {
+	uint8 TimeOutCNT=0;
+	int ret;
+	uint32 delayed_txtime=0;
+	uint64 poll_tx_ts;
+	uint64 resp_rx_ts;
+	uint64 final_tx_ts;
+	uint8 tx_TOAbuff[22]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x00, 0x00, 0x10};//TOA定位所使用的buff
+	dwt_forcetrxoff();
+	dwt_rxreset();
+	TOARanging=1;
+	
+	tx_TOAbuff[DESTADD]=Que[front].buff[SOURADD];
+	tx_TOAbuff[DESTADD+1]=(Que[front].buff[SOURADD+1]-128)<<8;
+	tx_TOAbuff[SOURADD]=(uint8)ANCHOR_NUM;
+	tx_TOAbuff[SOURADD+1]=(uint8)(ANCHOR_NUM>>8);
+	tx_TOAbuff[FUNCODE_IDX]=0x11;
+	dwt_setrxtimeout(1000);//设置接受超时
+	TimeOutCNT=0;
+	dwt_writetxdata(12, tx_TOAbuff, 0); /* Zero offset in TX buffer. */
+	dwt_writetxfctrl(12, 0, 1); /* Zero offset in TX buffer, ranging. */
+	ret=dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);//init first trans
+	if(ret == DWT_ERROR)
+	{
+			return -2;	
+	}
+	while(!isframe_sent);
+	isframe_sent=0;
+	TimeOutCNT=0;	
+	do
+	{
+		dwt_rxenable(DWT_START_RX_IMMEDIATE);
+		while(!isreceive_To&&!isframe_rec);
+		if(isreceive_To==1)
+		{
+			printf("Time out\r\n");
+			isreceive_To=0;
+			TimeOutCNT++;
+		}
+		if(TimeOutCNT==2)
+		{
+			return -1;			
+		}
+	}while(isframe_rec);
+	isframe_rec=0;//接受到第一次数据
+	TimeOutCNT=0;
+	
+	 /* Retrieve poll transmission and response reception timestamp. */
+	poll_tx_ts = get_tx_timestamp_u64();
+	resp_rx_ts = get_rx_timestamp_u64();
+	
+	delayed_txtime = (resp_rx_ts + (INIT_TX_DELAYED_TIME_UUS * UUS_TO_DWT_TIME)) >> 8;
+  dwt_setdelayedtrxtime(delayed_txtime);
+	final_tx_ts = (((uint64)(delayed_txtime & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
+		
+	final_msg_set_ts(&tx_TOAbuff[FINAL_MSG_POLL_TX_TS_IDX], poll_tx_ts);//發送最後一個數據包
+	final_msg_set_ts(&tx_TOAbuff[FINAL_MSG_RESP_RX_TS_IDX], resp_rx_ts);
+	final_msg_set_ts(&tx_TOAbuff[FINAL_MSG_FINAL_TX_TS_IDX], final_tx_ts);
+	
+	dwt_writetxdata(22, tx_TOAbuff, 0); /* Zero offset in TX buffer. */
+	dwt_writetxfctrl(22, 0, 1); /* Zero offset in TX buffer, ranging. */
+	ret = dwt_starttx(DWT_START_TX_DELAYED);
+	if(ret == DWT_ERROR)
+	{
+			return -2;	
+	}
+	while(!isframe_sent);
+	isframe_sent=0;
+	
+	TOARanging=0;
 	return 0;
 }
 /*========================================

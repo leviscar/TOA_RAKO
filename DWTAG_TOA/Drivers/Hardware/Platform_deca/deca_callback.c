@@ -40,7 +40,8 @@ void rx_ok_cb(const dwt_cb_data_t *cb_data)
 			{
 				while (!((status = dwt_read32bitreg(SYS_STATUS_ID)) & SYS_STATUS_TXFRS));
 				dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
-
+				dwt_forcetrxoff(); 
+        dwt_rxreset(); 
 			}
 			isframe_rec=1;
 		}
@@ -51,11 +52,13 @@ void rx_to_cb(const dwt_cb_data_t *cb_data)
 {
 	isreceive_To=1;
 }
+
 void rx_err_cb(const dwt_cb_data_t *cb_data)//接收器自动重启参考user manual p72 RXAUTR
 {
 
 	dwt_rxenable(DWT_START_RX_IMMEDIATE);
 }
+
 uint64 get_tx_timestamp_u64(void)
 {
     uint8 ts_tab[5];
@@ -68,4 +71,39 @@ uint64 get_tx_timestamp_u64(void)
         ts |= ts_tab[i];
     }
     return ts;
+}
+uint64 get_rx_timestamp_u64(void)
+{
+    uint8 ts_tab[5];
+    uint64 ts = 0;
+    int i;
+    dwt_readrxtimestamp(ts_tab);
+    for (i = 4; i >= 0; i--)
+    {
+        ts <<= 8;
+        ts |= ts_tab[i];
+    }
+    return ts;
+}
+void final_msg_set_ts(uint8 *ts_field, uint64 ts)
+{
+    int i;
+    for (i = 0; i < 5; i++)
+    {
+        ts_field[i] = (uint8) ts;
+        ts >>= 8;
+    }
+}
+void final_msg_get_ts(const uint8 *ts_field, uint64 *ts)
+{
+    int i;
+		uint8 *p;
+		*ts = 0;
+		p=(uint8 *)ts;
+    for (i = 0; i < 5; i++)
+    {
+        *p= ts_field[i];
+				p++;
+    }
+		
 }
