@@ -7,14 +7,14 @@ f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f0xx.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f072xb.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Include/core_cm0.h
-f072cbt6\stm32f0xx_hal_uart_ex.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f072cbt6\stm32f0xx_hal_uart_ex.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Include/core_cmInstr.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Include/core_cmFunc.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-f072cbt6\stm32f0xx_hal_uart_ex.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+f072cbt6\stm32f0xx_hal_uart_ex.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_rcc_ex.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h
 f072cbt6\stm32f0xx_hal_uart_ex.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio_ex.h

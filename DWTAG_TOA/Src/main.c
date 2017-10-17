@@ -283,11 +283,21 @@ int main(void)
 	tim14_int=1;
 	cnt_toa=10;
   /* USER CODE END 2 */
-
+	
+	/*
+	 * @author add by leviscar
+	 * @fun wake up from sleep
+	*/
+	HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_SET);
+	Delay_us(500);
+	HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_RESET);
+	Delay_ms(3);
+	
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	do
   {
+		
   /* USER CODE END WHILE */
 		cnt_toa++;
 		if(cnt_toa<10)
@@ -299,6 +309,7 @@ int main(void)
 			send2MainAnch(dis,QUANTITY_ANCHOR);
 			printf("sent data\r\n");
 			//Sleep
+			dwt_entersleep();
 		}
 		else
 		{
