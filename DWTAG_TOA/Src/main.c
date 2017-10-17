@@ -128,7 +128,7 @@ uint8 tx_TOAdata[TOA_MSG_LEN]={0x61,0x88,0,0xCA, 0xDE,0x01, 0x00, 0x00, 0x00,0x1
 
 /* Frame sequence number, incremented after each transmission. */
 static uint8 frame_seq_nb = 0;
-static uint8 tx_poll_mes[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x21, 0, 0};
+static uint8 tx_poll_mes[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x80, 0x00, 0x00, 0x21, 0, 0};
 static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x10, 0x02, 0, 0, 0, 0};
 static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint64 rxTime=0;
@@ -276,7 +276,7 @@ int main(void)
 	//dw_setARER(1);//使能接收机自动重启
 	//here to get the time window ,function code is 0x2b
 	dwt_enableautoack(5);//使能自动应答
-	dwt_enableframefilter(DWT_FF_DATA_EN|DWT_FF_ACK_EN);//使能帧过滤
+//	dwt_enableframefilter(DWT_FF_DATA_EN|DWT_FF_ACK_EN);//使能帧过滤
 	
 	dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS|SYS_STATUS_RXFCG|SYS_STATUS_SLP2INIT);//清除标志位
 	dwt_setinterrupt(0xffff,0);//关闭中断
@@ -293,17 +293,53 @@ int main(void)
 	tim14_int=1;
 	cnt_toa=10;
   /* USER CODE END 2 */
-
+	
+	dwt_entersleep();
+	
+	Delay_ms(500);
+	HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_SET);
+	Delay_us(500);
+	HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_RESET);
+	Delay_ms(3);
+	while(1)
+	{
+		uint64 tt;
+		Delay_ms(3);
+		/* Clear reception timeout to start next ranging process. */
+    dwt_setrxtimeout(2000);
+		dwt_rxenable(DWT_START_RX_IMMEDIATE);
+//		/* Poll for reception of a frame or error/timeout. See NOTE 8 below. */
+//    while (!((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) & (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)))
+//    { };
+		
+		if(isframe_rec==1){
+			isframe_rec=0;
+			tt=rxTime;
+			rxTime=get_rx_timestamp_u64();
+			
+			printf("nowTime:%lld \t",rxTime);
+			tt=rxTime-tt;
+			printf("timeDiff:%lld \r\n",tt);
+//			dwt_rxenable(DWT_START_RX_IMMEDIATE);
+			frame_seq_nb++;
+		}
+		
+	}
+	
+	
+	
+	
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 	do
   {
   /* USER CODE END WHILE */
 		cnt_toa++;
-		dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS|SYS_STATUS_RXFCG|SYS_STATUS_SLP2INIT);//清除标志位
+//		dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS|SYS_STATUS_RXFCG|SYS_STATUS_SLP2INIT);//清除标志位
 		HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_SET);
 		Delay_us(500);
 		HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_RESET);
+		Delay_ms(3);
 		if(cnt_toa<10)
 		{
 
@@ -313,14 +349,14 @@ int main(void)
 //			}
 //			send2MainAnch(dis,QUANTITY_ANCHOR);
 //			dwt_configuresleepcnt(sleep_cnt);
-			Delay_ms(3);
+			
 			sendTx2Anchor();
 			printf("sent data\r\n");
 			
 //			rxReadTime();
 			//Sleep
 			dwt_entersleep();
-			Delay_ms(1000);
+			
 			
 
 		}
@@ -749,6 +785,9 @@ int send2MainAnch(float *data,int len)//發送數據給主機站
 
 void sendTx2Anchor(void)
 {
+	uint64 timeDiff;//时间差
+//	dwt_setrxaftertxdelay(0);
+//	dwt_setrxtimeout(0);
 	tx_poll_mes[ALL_MSG_SN_IDX] = frame_seq_nb;
 	dwt_writetxdata(sizeof(tx_poll_mes), tx_poll_mes, 0); /* Zero offset in TX buffer. */
   dwt_writetxfctrl(sizeof(tx_poll_mes), 0, 1); /* Zero offset in TX buffer, ranging. */
@@ -762,34 +801,39 @@ void sendTx2Anchor(void)
   /* Increment frame sequence number after transmission of the poll message (modulo 256). */
   frame_seq_nb++;
 	
-//	rxTime=0;
-//	while(!rxTime)
+
+	
+	
+	while(isframe_rec!=1);
+	isframe_rec=0;
+	timeDiff=rxTime;
+	rxTime=get_rx_timestamp_u64();
+	timeDiff=(rxTime-timeDiff);
+	printf("%lld \r\n",rxTime);
+	printf("timeDiff %lld \r\n",timeDiff);
+
+//	while(1)
 //	{
-//		do
-//		{
-//			dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
-//			while(!isframe_sent);
-//			isframe_sent=0;	
-//			
-//			while(!isreceive_To&&!isframe_rec);
-//			if(isreceive_To==1)
-//			{
-//				isreceive_To=0;
-//				printf("rec Time out\r\n");
-//				Delay_ms(200);
-//			}
-//			
-//		}while(isframe_rec!=1);
-//		isframe_rec=0;
-//		rxTime=get_rx_timestamp_u64();
-//		printf("%lld",rxTime);	
+//		if(isframe_rec==1){
+//			isframe_rec=0;
+//			rxTime=get_rx_timestamp_u64();
+//			printf("%lld \r\n",rxTime);
+//			dwt_rxenable(DWT_START_RX_IMMEDIATE);
+//			frame_seq_nb++;
+//			dwt_rxenable(DWT_START_RX_IMMEDIATE);
+//		}
+//		
 //	}
+
+	
+
 }
 
 
 void rxReadTime(void)
 {
-	dwt_rxenable(DWT_START_RX_IMMEDIATE);
+	
+	
 	while(isframe_rec!=1);
 	isframe_rec=0;
 	rxTime=get_rx_timestamp_u64();

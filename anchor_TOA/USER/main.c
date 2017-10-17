@@ -68,7 +68,7 @@ static uint16 short_addr = ANCHOR_NUM; /* "RX" */
 uint8 rx_buffer[RX_BUF_LEN];
 uint8 DMA_transing=0;
 uint8 frame_seq_nb=0;
-uint8 tx_resp_time[18]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x01, 0x00, 0x2C, 0, 0, 0, 0};
+uint8 tx_resp_time[18]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x01, 0x80, 0x2C, 0, 0, 0, 0};
 //uint8 ACKframe[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x00, 0x00, 0xAC, 0, 0};
 uint8 ACKframe[5]={ACK_FC_0,ACK_FC_1,0,0,0};
 uint8 dw_payloadbuff[127];
@@ -219,7 +219,7 @@ int main(void)
 
     /* Configure frame filtering. Only data frames are enabled in this example. Frame filtering must be enabled for Auto ACK to work. */
     //dwt_enableframefilter(DWT_FF_DATA_EN);
-		dwt_enableframefilter(DWT_FF_DATA_EN|DWT_FF_ACK_EN);
+//		dwt_enableframefilter(DWT_FF_DATA_EN|DWT_FF_ACK_EN);
 
     /* Activate auto-acknowledgement. Time is set to 0 so that the ACK is sent as soon as possible after reception of a frame. */
     dwt_enableautoack(5);
@@ -246,7 +246,22 @@ int main(void)
 	 {
 		
 	#ifdef MAIN_ANCHOR
-
+		
+	while(1)
+	{
+//		tx_resp_time[DESTADD]=0x01;
+//		tx_resp_time[DESTADD+1]=0x80;
+		dwt_forcetrxoff();
+		dwt_writetxdata(sizeof(tx_resp_time), tx_resp_time, 0); /* Zero offset in TX buffer. */
+		dwt_writetxfctrl(sizeof(tx_resp_time), 0, 0); /* Zero offset in TX buffer, ranging. */
+		dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
+		while(!isframe_sent);
+		isframe_sent=0;
+		printf("send res\r\n");
+		Delay_ms(500);
+	}
+	
+	
 		 while(Qcnt)
 			{
 				switch(Que[front].buff[FUNCODE_IDX])
@@ -499,25 +514,29 @@ int DS_TwoWayRanging(void)
 	printf("rec toa\r\n");
 	
 	dwt_forcetrxoff();
-	dwt_writetxdata(sizeof(rx_resp_msg), rx_resp_msg, 0); /* Zero offset in TX buffer. */
-  dwt_writetxfctrl(sizeof(rx_resp_msg), 0, 1); /* Zero offset in TX buffer, ranging. */
-	dwt_setrxtimeout(10000);//设置接受超时
-	/* Start transmission, indicating that a response is expected so that reception is enabled automatically after the frame is sent and the delay
-  * set by dwt_setrxaftertxdelay() has elapsed. */
-	Delay_ms(30);
-  dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
+	dwt_writetxdata(sizeof(tx_resp_time), tx_resp_time, 0); /* Zero offset in TX buffer. */
+	dwt_writetxfctrl(sizeof(tx_resp_time), 0, 0); /* Zero offset in TX buffer, ranging. */
+	dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
 	while(!isframe_sent);
 	isframe_sent=0;
+	
+	
+//	while(1)
+//	{
+//		dwt_forcetrxoff();
+//		dwt_writetxdata(sizeof(tx_resp_time), tx_resp_time, 0); /* Zero offset in TX buffer. */
+//		dwt_writetxfctrl(sizeof(tx_resp_time), 0, 0); /* Zero offset in TX buffer, ranging. */
+//		dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
+//		while(!isframe_sent);
+//		isframe_sent=0;
+//		printf("send res\r\n");
+//		Delay_ms(500);
+//	}
+	
+	
+
 	printf("send res\r\n");
-//	
-//	
-//	Delay_ms(500);
-//	
-//	
-//  dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
-//	while(!isframe_sent);
-//	isframe_sent=0;
-//	printf("send res\r\n");
+
 
 
 

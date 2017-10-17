@@ -22,7 +22,7 @@ Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
 F:\ÑÐ¶þ\TOA\TOA_RAKO\DWTAG_TOA\MDK-ARM\f072cbt6.uvprojx
-Project File Date:  10/16/2017
+Project File Date:  10/17/2017
 
 <h2>Output:</h2>
 Rebuild target 'f072cbt6'
@@ -52,6 +52,8 @@ compiling stm32f0xx_it.c...
 ../Src/stm32f0xx_it.c: 1 warning, 0 errors
 compiling stm32f0xx_hal_msp.c...
 compiling main.c...
+../Src/main.c(334): warning:  #128-D: loop is not reachable
+        do
 ../Src/main.c(189): warning:  #177-D: variable "lp_osc_freq" was declared but never referenced
         uint16 lp_osc_freq, sleep_cnt;
 ../Src/main.c(189): warning:  #177-D: variable "sleep_cnt" was declared but never referenced
@@ -76,7 +78,7 @@ compiling main.c...
         uint8_t i,j,key,flag,MPUdatacnt=0;
 ../Src/main.c(198): warning:  #177-D: variable "dis" was declared but never referenced
         float dis[QUANTITY_ANCHOR];
-../Src/main.c(669): warning:  #177-D: variable "time" was declared but never referenced
+../Src/main.c(705): warning:  #177-D: variable "time" was declared but never referenced
         uint32 time=0;
 ../Src/main.c(57): warning:  #177-D: variable "status_reg" was declared but never referenced
   static uint32 status_reg = 0;
@@ -84,7 +86,7 @@ compiling main.c...
   static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x10, 0x02, 0, 0, 0, 0};
 ../Src/main.c(133): warning:  #177-D: variable "tx_final_msg" was declared but never referenced
   static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-../Src/main.c: 16 warnings, 0 errors
+../Src/main.c: 17 warnings, 0 errors
 compiling delay.c...
 compiling Testing.c...
 ..\Src\Testing.c(82): warning:  #1-D: last line of file ends without a newline
@@ -124,8 +126,8 @@ compiling inv_mpu.c...
 compiling inv_mpu_dmp_motion_driver.c...
 compiling I2C.c...
 linking...
-Program Size: Code=26032 RO-data=688 RW-data=548 ZI-data=1852  
-"f072cbt6\f072cbt6.axf" - 0 Error(s), 25 Warning(s).
+Program Size: Code=25324 RO-data=688 RW-data=548 ZI-data=1852  
+"f072cbt6\f072cbt6.axf" - 0 Error(s), 26 Warning(s).
 
 <h2>Software Packages used:</h2>
 

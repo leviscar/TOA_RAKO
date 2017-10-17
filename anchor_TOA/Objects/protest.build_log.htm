@@ -48,13 +48,15 @@ HARDWARE\NRF24L01\rf24l01.c(289): warning:  #550-D: variable "fifo_state" was se
 HARDWARE\NRF24L01\rf24l01.c: 2 warnings, 0 errors
 compiling Deca_user_api.c...
 compiling main.c...
+USER\main.c(265): warning:  #128-D: loop is not reachable
+                 while(Qcnt)
 USER\main.c(160): warning:  #177-D: variable "status" was declared but never referenced
         uint32 status;
 USER\main.c(161): warning:  #177-D: variable "MPUdataidx" was declared but never referenced
         uint8 MPUdataidx;
-USER\main.c(379): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
+USER\main.c(394): warning:  #2748-D: null argument provided for parameter marked with attribute "nonnull"
                                 fputc((int)crc,NULL);
-USER\main.c(431): warning:  #177-D: function "WirelessSyncDataProcess_SA" was declared but never referenced
+USER\main.c(446): warning:  #177-D: function "WirelessSyncDataProcess_SA" was declared but never referenced
   int WirelessSyncDataProcess_SA(void)
 USER\main.c(77): warning:  #177-D: variable "poll_rx_ts" was declared but never referenced
   static uint64 poll_rx_ts;
@@ -64,9 +66,11 @@ USER\main.c(79): warning:  #177-D: variable "final_rx_ts" was declared but never
   static uint64 final_rx_ts;
 USER\main.c(80): warning:  #177-D: variable "tx_poll_mes" was declared but never referenced
   static uint8 tx_poll_mes[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x21, 0, 0};
+USER\main.c(81): warning:  #177-D: variable "rx_resp_msg" was declared but never referenced
+  static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x10, 0x02, 0, 0, 0, 0};
 USER\main.c(82): warning:  #177-D: variable "tx_final_msg" was declared but never referenced
   static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-USER\main.c: 9 warnings, 0 errors
+USER\main.c: 11 warnings, 0 errors
 compiling delay.c...
 compiling test_fun.c...
 compiling stm32f0xx_exti.c...
@@ -97,9 +101,9 @@ HARDWARE\decadriver\deca_device.c(2120): warning:  #177-D: variable "systime" wa
 HARDWARE\decadriver\deca_device.c: 3 warnings, 0 errors
 compiling deca_params_init.c...
 linking...
-Program Size: Code=18216 RO-data=764 RW-data=748 ZI-data=5052  
+Program Size: Code=16520 RO-data=764 RW-data=748 ZI-data=5052  
 FromELF: creating hex file...
-".\Objects\protest.axf" - 0 Error(s), 16 Warning(s).
+".\Objects\protest.axf" - 0 Error(s), 18 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   F:\ÑÐ¶þ\TOA\TOA_RAKO\anchor_TOA\RTE
