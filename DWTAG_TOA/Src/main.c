@@ -83,6 +83,7 @@ static dwt_config_t config = {
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
+void rxReadTime(void);
 void sendTx2Anchor(void);
 void POLL_TimeWindow(void);
 void SystemClock_Config(void);
@@ -130,7 +131,8 @@ static uint8 frame_seq_nb = 0;
 static uint8 tx_poll_mes[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x21, 0, 0};
 static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x10, 0x02, 0, 0, 0, 0};
 static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
+uint64 rxTime=0;
+	
 uint8 dw_txseq_num=1;
 usart_bitfield USART_STA={
 	0,
@@ -285,8 +287,9 @@ int main(void)
 	
 //	lp_osc_freq = (XTAL_FREQ_HZ / 2) / dwt_calibratesleepcnt();
 //	sleep_cnt = ((SLEEP_TIME_MS * lp_osc_freq) / 1000) >> 12;	
-//dwt_configuresleepcnt(sleep_cnt);
+//	dwt_configuresleepcnt(sleep_cnt);
 	dwt_configuresleep(DWT_PRESRV_SLEEP | DWT_CONFIG |DWT_LLDLOAD|DWT_LLD0, DWT_WAKE_WK | DWT_SLP_EN);
+//	dwt_configuresleep(DWT_PRESRV_SLEEP | DWT_CONFIG|DWT_LLDLOAD|DWT_LLD0, DWT_WAKE_CS |DWT_WAKE_WK| DWT_SLP_EN);
 	tim14_int=1;
 	cnt_toa=10;
   /* USER CODE END 2 */
@@ -297,19 +300,33 @@ int main(void)
   {
   /* USER CODE END WHILE */
 		cnt_toa++;
+		dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS|SYS_STATUS_RXFCG|SYS_STATUS_SLP2INIT);//清除标志位
+		HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_SET);
+		Delay_us(500);
+		HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_RESET);
 		if(cnt_toa<10)
 		{
+
 //			for(i=0;i<QUANTITY_ANCHOR;i++)
 //			{
 //				if(twoway_ranging(0x01,&dis[i]))dis[0]=0;
 //			}
 //			send2MainAnch(dis,QUANTITY_ANCHOR);
+//			dwt_configuresleepcnt(sleep_cnt);
+			Delay_ms(3);
 			sendTx2Anchor();
 			printf("sent data\r\n");
+			
+//			rxReadTime();
 			//Sleep
+			dwt_entersleep();
+			Delay_ms(1000);
+			
+
 		}
 		else
 		{
+			
 			cnt_toa=0;
 			HAL_TIM_Base_Stop_IT(&htim14);
 			TIM14->CNT=0;
@@ -647,6 +664,7 @@ void dw_closeack(void)
 }
 void POLL_TimeWindow(void)
 {
+	dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS|SYS_STATUS_RXFCG|SYS_STATUS_SLP2INIT);//清除标志位
 	uint16 tagid=TAG_ID;
 	uint32 time=0;
 	dwt_setrxtimeout(2000);//设置接受超时
@@ -663,6 +681,7 @@ void POLL_TimeWindow(void)
 			dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
 			while(!isframe_sent);
 			isframe_sent=0;	
+			
 			while(!isreceive_To&&!isframe_rec);
 			if(isreceive_To==1)
 			{
@@ -740,12 +759,47 @@ void sendTx2Anchor(void)
 	while(!isframe_sent);
 	isframe_sent=0;
 	
-//	/* We assume that the transmission is achieved correctly, poll for reception of a frame or error/timeout. See NOTE 9 below. */
-//  while (!((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) & (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)))
-//  { };
-
   /* Increment frame sequence number after transmission of the poll message (modulo 256). */
   frame_seq_nb++;
+	
+//	rxTime=0;
+//	while(!rxTime)
+//	{
+//		do
+//		{
+//			dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
+//			while(!isframe_sent);
+//			isframe_sent=0;	
+//			
+//			while(!isreceive_To&&!isframe_rec);
+//			if(isreceive_To==1)
+//			{
+//				isreceive_To=0;
+//				printf("rec Time out\r\n");
+//				Delay_ms(200);
+//			}
+//			
+//		}while(isframe_rec!=1);
+//		isframe_rec=0;
+//		rxTime=get_rx_timestamp_u64();
+//		printf("%lld",rxTime);	
+//	}
+}
+
+
+void rxReadTime(void)
+{
+	dwt_rxenable(DWT_START_RX_IMMEDIATE);
+	while(isframe_rec!=1);
+	isframe_rec=0;
+	rxTime=get_rx_timestamp_u64();
+	printf("%lld",rxTime);
+	
+	while(isframe_rec!=1);
+	isframe_rec=0;
+	rxTime=get_rx_timestamp_u64();
+	printf("%lld",rxTime);
+	
 }
 
 /* USER CODE END 4 */

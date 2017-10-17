@@ -53,7 +53,6 @@
 #endif
 #define WLIDX 10
 #define WRIDX 11
-
 #define QUANTITY_ANCHOR 3
 #define TOA_MSG_LEN 12+4*QUANTITY_ANCHOR
 #define TOA_DATA_IDX 10

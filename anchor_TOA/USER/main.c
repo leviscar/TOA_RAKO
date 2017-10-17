@@ -74,6 +74,18 @@ uint8 ACKframe[5]={ACK_FC_0,ACK_FC_1,0,0,0};
 uint8 dw_payloadbuff[127];
 uint16 TBsyctime=0xff;
 
+static uint64 poll_rx_ts;
+static uint64 resp_tx_ts;
+static uint64 final_rx_ts;
+static uint8 tx_poll_mes[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x21, 0, 0};
+static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x10, 0x02, 0, 0, 0, 0};
+static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+uint32 resp_tx_time;
+uint32 frame_len;
+uint8 qFront;
+int ret;
+
 int idxreco=-1;
 uint16 TAG_datacnt=0;
 uint8 crc=0;
@@ -485,6 +497,51 @@ int TOAdata_process(void)
 int DS_TwoWayRanging(void)
 {
 	printf("rec toa\r\n");
+	
+	dwt_forcetrxoff();
+	dwt_writetxdata(sizeof(rx_resp_msg), rx_resp_msg, 0); /* Zero offset in TX buffer. */
+  dwt_writetxfctrl(sizeof(rx_resp_msg), 0, 1); /* Zero offset in TX buffer, ranging. */
+	dwt_setrxtimeout(10000);//设置接受超时
+	/* Start transmission, indicating that a response is expected so that reception is enabled automatically after the frame is sent and the delay
+  * set by dwt_setrxaftertxdelay() has elapsed. */
+	Delay_ms(30);
+  dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
+	while(!isframe_sent);
+	isframe_sent=0;
+	printf("send res\r\n");
+//	
+//	
+//	Delay_ms(500);
+//	
+//	
+//  dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
+//	while(!isframe_sent);
+//	isframe_sent=0;
+//	printf("send res\r\n");
+
+
+
+//	/* Retrieve poll reception timestamp. */
+//  poll_rx_ts = get_rx_timestamp_u64();
+//	/* Set send time for response. See NOTE 9 below. */
+//  resp_tx_time = (poll_rx_ts + (POLL_RX_TO_RESP_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
+//  dwt_setdelayedtrxtime(resp_tx_time);
+//	
+//	/* Set expected delay and timeout for final message reception. See NOTE 4 and 5 below. */
+//  dwt_setrxaftertxdelay(RESP_TX_TO_FINAL_RX_DLY_UUS);
+//  dwt_setrxtimeout(FINAL_RX_TIMEOUT_UUS);
+//	
+//	/* Write and send the response message.*/
+//	dwt_writetxdata(sizeof(rx_resp_msg), rx_resp_msg, 0); /* Zero offset in TX buffer. */
+//  dwt_writetxfctrl(sizeof(rx_resp_msg), 0, 1); /* Zero offset in TX buffer, ranging. */
+//  ret = dwt_starttx(DWT_START_TX_DELAYED | DWT_RESPONSE_EXPECTED);
+//	
+//	while(!isframe_sent);
+//	isframe_sent=0;
+//	
+//	printf("send res\r\n");
+
+	
 	return 0;
 }
 /*========================================

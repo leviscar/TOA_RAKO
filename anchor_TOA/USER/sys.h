@@ -12,6 +12,8 @@ typedef unsigned long long uint64;
 /* Default antenna delay values for 64 MHz PRF. See NOTE 2 below. */
 #define TX_ANT_DLY 16495
 #define RX_ANT_DLY 16495
+
+#define SEND_ORDER 1 //max 3
 /* Index to access some of the fields in the frames involved in the process. */
 #define ACK_FC_0 0x02
 #define ACK_FC_1 0x00
@@ -43,13 +45,13 @@ typedef unsigned long long uint64;
 #define POLL_TX_TO_RESP_RX_DLY_UUS 0//这是init第一次延迟打开接受器的时间，和POLL_RX_TO_RESP_TX_DLY_UUS相关
 /* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW1000's delayed TX function. This includes the
  * frame length of approximately  ms with above configuration. */
-#define RESP_RX_TO_FINAL_TX_DLY_UUS 30000//延迟发射的时间
+#define RESP_RX_TO_FINAL_TX_DLY_UUS 500//30000//延迟发射的时间
 /* Receive response timeout. See NOTE 5 below. */
 #define RESP_RX_TIMEOUT_UUS 0//3500 超时时间
 
 /* This is the delay from Frame RX timestamp to TX reply timestamp used for calculating/setting the DW1000's delayed TX function. This includes the
 * frame length of approximately  ns with above configuration. */
-#define POLL_RX_TO_RESP_TX_DLY_UUS 20000//延迟发射的时间
+#define POLL_RX_TO_RESP_TX_DLY_UUS 200//20000//延迟发射的时间
 /* This is the delay from the end of the frame transmission to the enable of the receiver, as programmed for the DW1000's wait for response feature. */
 #define RESP_TX_TO_FINAL_RX_DLY_UUS 0//這是resp接受到第一次信息之後，返回發送后接收器的延遲打開時間，和RESP_RX_TO_FINAL_TX_DLY_UUS有關
 /* Receive final timeout. See NOTE 5 below. */

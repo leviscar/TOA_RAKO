@@ -69,3 +69,28 @@ uint64 get_tx_timestamp_u64(void)
     }
     return ts;
 }
+
+
+/*! ------------------------------------------------------------------------------------------------------------------
+ * @fn get_rx_timestamp_u64()
+ *
+ * @brief Get the RX time-stamp in a 64-bit variable.
+ *        /!\ This function assumes that length of time-stamps is 40 bits, for both TX and RX!
+ *
+ * @param  none
+ *
+ * @return  64-bit value of the read time-stamp.
+ */
+uint64 get_rx_timestamp_u64(void)
+{
+    uint8 ts_tab[5];
+    uint64 ts = 0;
+    int i;
+    dwt_readrxtimestamp(ts_tab);
+    for (i = 4; i >= 0; i--)
+    {
+        ts <<= 8;
+        ts |= ts_tab[i];
+    }
+    return ts;
+}
