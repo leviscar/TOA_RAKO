@@ -3,9 +3,13 @@
 <title>Static Call Graph - [f072cbt6\f072cbt6.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image f072cbt6\f072cbt6.axf</H1><HR>
+<<<<<<< HEAD
 <BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Tue Oct 17 21:14:52 2017
+=======
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060422: Last Updated: Wed Oct 18 13:41:15 2017
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><P>
-<H3>Maximum Stack Usage =        632 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        616 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 main &rArr; twoway_ranging &rArr; dwt_rxenable &rArr; dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 <P>
@@ -209,17 +213,25 @@ Global Symbols
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[4c]"></a>__aeabi_llsr</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, llushr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_llsr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2lz
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+=======
+<P><STRONG><a name="[4d]"></a>__aeabi_llsr</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, llushr.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_llsr
+</UL>
+<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
 <P><STRONG><a name="[fe]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llushr.o(.text), UNUSED)
 
+<<<<<<< HEAD
 <P><STRONG><a name="[e7]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
@@ -228,29 +240,61 @@ Global Symbols
 <P><STRONG><a name="[ff]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
 <P><STRONG><a name="[100]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+=======
+<P><STRONG><a name="[e5]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+</UL>
+
+<P><STRONG><a name="[e4]"></a>__aeabi_memcpy4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+</UL>
+
+<P><STRONG><a name="[ff]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 
 <P><STRONG><a name="[3d]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[101]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
 <P><STRONG><a name="[102]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+=======
+<P><STRONG><a name="[100]"></a>__aeabi_memset4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+
+<P><STRONG><a name="[101]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 
 <P><STRONG><a name="[3c]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[e6]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
 </UL>
 
 <P><STRONG><a name="[103]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+=======
+<P><STRONG><a name="[f6]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+</UL>
+
+<P><STRONG><a name="[102]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 
 <P><STRONG><a name="[3e]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
+</UL>
+
+<P><STRONG><a name="[e7]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, fmul.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fmul
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 </UL>
 
 <P><STRONG><a name="[3f]"></a>__aeabi_dadd</STRONG> (Thumb, 328 bytes, Stack size 48 bytes, dadd.o(.text))
@@ -262,7 +306,11 @@ Global Symbols
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<<<<<<< HEAD
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 </UL>
@@ -272,7 +320,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[45]"></a>__aeabi_drsub</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, dadd.o(.text), UNUSED)
@@ -284,7 +336,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
@@ -293,12 +349,17 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
 
 <P><STRONG><a name="[48]"></a>__aeabi_ui2d</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, dfltui.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = __aeabi_ui2d &rArr; _double_epilogue &rArr; __aeabi_llsr
+<<<<<<< HEAD
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
@@ -311,6 +372,12 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+</UL>
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[4a]"></a>__aeabi_ul2d</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, dfltul.o(.text))
@@ -318,6 +385,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 </UL>
 
@@ -336,6 +404,25 @@ Global Symbols
 
 <P><STRONG><a name="[4d]"></a>__aeabi_uldivmod</STRONG> (Thumb, 96 bytes, Stack size 48 bytes, uldiv.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+</UL>
+
+<P><STRONG><a name="[ba]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
+<P><STRONG><a name="[4a]"></a>__aeabi_d2f</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, d2f.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_d2f
+</UL>
+<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_float_round
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+</UL>
+
+<P><STRONG><a name="[4c]"></a>__aeabi_uldivmod</STRONG> (Thumb, 96 bytes, Stack size 48 bytes, uldiv.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
@@ -346,13 +433,21 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<<<<<<< HEAD
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2lz
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+=======
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[104]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
+=======
+<P><STRONG><a name="[103]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llshl.o(.text), UNUSED)
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 
 <P><STRONG><a name="[41]"></a>__aeabi_lasr</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, llsshr.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_lasr
@@ -360,9 +455,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[105]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
 
 <P><STRONG><a name="[106]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, iusefp.o(.text), UNUSED)
+=======
+<P><STRONG><a name="[104]"></a>_ll_sshift_r</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsshr.o(.text), UNUSED)
+
+<P><STRONG><a name="[105]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, iusefp.o(.text), UNUSED)
+
+<P><STRONG><a name="[4b]"></a>_float_round</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, fepilogue.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+</UL>
+
+<P><STRONG><a name="[106]"></a>_float_epilogue</STRONG> (Thumb, 114 bytes, Stack size 12 bytes, fepilogue.o(.text), UNUSED)
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 
 <P><STRONG><a name="[43]"></a>_double_round</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, depilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = _double_round
@@ -375,20 +482,33 @@ Global Symbols
 <P><STRONG><a name="[42]"></a>_double_epilogue</STRONG> (Thumb, 164 bytes, Stack size 48 bytes, depilogue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = _double_epilogue &rArr; __aeabi_llsr
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+=======
+<BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_clz
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ul2d
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_l2d
+=======
+<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ul2d
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
 <P><STRONG><a name="[4f]"></a>__aeabi_d2ulz</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, dfixul.o(.text), UNUSED)
+<<<<<<< HEAD
 <BR><BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+=======
+<BR><BR>[Calls]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
@@ -419,7 +539,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_TX_Mode
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_RX_Mode
+<<<<<<< HEAD
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+=======
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[16]"></a>EXTI0_1_IRQHandler</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, stm32f0xx_it.o(i.EXTI0_1_IRQHandler))
@@ -444,6 +567,7 @@ Global Symbols
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI2_Init
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
+<<<<<<< HEAD
 </UL>
 
 <P><STRONG><a name="[5a]"></a>GET_Time2Tpoint</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, testing.o(i.GET_Time2Tpoint))
@@ -454,13 +578,29 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 </UL>
 
+=======
+</UL>
+
+<P><STRONG><a name="[5a]"></a>GET_Time2Tpoint</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, testing.o(i.GET_Time2Tpoint))
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = GET_Time2Tpoint &rArr; dwt_readsystimestamphi32 &rArr; dwt_read32bitoffsetreg &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readsystimestamphi32
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+</UL>
+
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <P><STRONG><a name="[5c]"></a>HAL_Delay</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, delay.o(i.HAL_Delay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = HAL_Delay &rArr; Delay_ms
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;deca_sleep
+<<<<<<< HEAD
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_DW1000
+=======
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_DW1000
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[53]"></a>HAL_GPIO_Init</STRONG> (Thumb, 480 bytes, Stack size 20 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_Init))
@@ -471,7 +611,11 @@ Global Symbols
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_1_IRQHandler_Config
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_MspInit
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_MspInit
+<<<<<<< HEAD
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_DW1000
+=======
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_DW1000
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[58]"></a>HAL_GPIO_ReadPin</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_ReadPin))
@@ -481,13 +625,21 @@ Global Symbols
 
 <P><STRONG><a name="[91]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin))
 <BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<<<<<<< HEAD
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+=======
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_Write_Reg
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_TX_Mode
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_Read_Reg
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_RX_Mode
+<<<<<<< HEAD
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+=======
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_Write_Buf
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_Read_Buf
 </UL>
@@ -607,11 +759,19 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[e5]"></a>HAL_SPIEx_FlushRxFifo</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, stm32f0xx_hal_spi_ex.o(i.HAL_SPIEx_FlushRxFifo))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_SPIEx_FlushRxFifo
 </UL>
 <BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+=======
+<P><STRONG><a name="[e3]"></a>HAL_SPIEx_FlushRxFifo</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, stm32f0xx_hal_spi_ex.o(i.HAL_SPIEx_FlushRxFifo))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = HAL_SPIEx_FlushRxFifo
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[6b]"></a>HAL_SPI_Init</STRONG> (Thumb, 234 bytes, Stack size 16 bytes, stm32f0xx_hal_spi.o(i.HAL_SPI_Init))
@@ -639,7 +799,11 @@ Global Symbols
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_WaitFlagStateUntilTimeout
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_EndRxTransaction
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+=======
+<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[71]"></a>HAL_SPI_Transmit</STRONG> (Thumb, 454 bytes, Stack size 32 bytes, stm32f0xx_hal_spi.o(i.HAL_SPI_Transmit))
@@ -648,8 +812,13 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI_EndRxTxTransaction
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+=======
+<BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[6e]"></a>HAL_SPI_TransmitReceive</STRONG> (Thumb, 892 bytes, Stack size 48 bytes, stm32f0xx_hal_spi.o(i.HAL_SPI_TransmitReceive))
@@ -718,7 +887,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[e3]"></a>HAL_TIM_Base_Stop_IT</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Stop_IT))
+=======
+<P><STRONG><a name="[e2]"></a>HAL_TIM_Base_Stop_IT</STRONG> (Thumb, 58 bytes, Stack size 0 bytes, stm32f0xx_hal_tim.o(i.HAL_TIM_Base_Stop_IT))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -923,7 +1096,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[a0]"></a>POLL_TimeWindow</STRONG> (Thumb, 214 bytes, Stack size 16 bytes, main.o(i.POLL_TimeWindow))
+=======
+<P><STRONG><a name="[a0]"></a>POLL_TimeWindow</STRONG> (Thumb, 236 bytes, Stack size 16 bytes, main.o(i.POLL_TimeWindow))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 408<LI>Call Chain = POLL_TimeWindow &rArr; dwt_writetxfctrl &rArr; dwt_write32bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxfctrl
@@ -952,7 +1129,11 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readsystimestamphi32
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[9c]"></a>SPI_RF_SendByte</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, rf24l01.o(i.SPI_RF_SendByte))
@@ -1084,11 +1265,19 @@ Global Symbols
 <LI><a href="#[3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;unlockflash
 <LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_status
 <LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF_Test
+<<<<<<< HEAD
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+=======
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
@@ -1105,7 +1294,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __ARM_common_switch8
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF_Test
+<<<<<<< HEAD
 <LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+=======
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_enableclocks
 </UL>
@@ -1121,8 +1314,12 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_entersleep
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+=======
+<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[b0]"></a>_dwt_configlde</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, deca_device.o(i._dwt_configlde))
@@ -1140,7 +1337,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_enableclocks
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+=======
+<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[b3]"></a>_dwt_enableclocks</STRONG> (Thumb, 236 bytes, Stack size 16 bytes, deca_device.o(i._dwt_enableclocks))
@@ -1150,7 +1351,11 @@ Global Symbols
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+=======
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_loaducodefromrom
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_disablesequencing
 </UL>
@@ -1162,7 +1367,11 @@ Global Symbols
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_enableclocks
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+=======
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[b8]"></a>_dwt_otpread</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, deca_device.o(i._dwt_otpread))
@@ -1172,7 +1381,11 @@ Global Symbols
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+=======
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[b7]"></a>deca_sleep</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, deca_sleep.o(i.deca_sleep))
@@ -1180,6 +1393,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_loaducodefromrom
 </UL>
@@ -1197,6 +1411,25 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
+=======
+<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_loaducodefromrom
+</UL>
+
+<P><STRONG><a name="[c5]"></a>decamutexoff</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, deca_mutex.o(i.decamutexoff))
+<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[c3]"></a>decamutexon</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, deca_mutex.o(i.decamutexon))
+<BR><BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1243,6 +1476,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
+<<<<<<< HEAD
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1251,35 +1485,59 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = dwt_entersleep &rArr; _dwt_aonarrayupload &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_aonarrayupload
+=======
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[c3]"></a>dwt_forcetrxoff</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, deca_device.o(i.dwt_forcetrxoff))
+=======
+<P><STRONG><a name="[c2]"></a>dwt_forcetrxoff</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, deca_device.o(i.dwt_forcetrxoff))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
+<<<<<<< HEAD
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
+=======
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_ok_cb
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxenable
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[c7]"></a>dwt_initialise</STRONG> (Thumb, 244 bytes, Stack size 24 bytes, deca_device.o(i.dwt_initialise))
+=======
+<P><STRONG><a name="[c6]"></a>dwt_initialise</STRONG> (Thumb, 244 bytes, Stack size 24 bytes, deca_device.o(i.dwt_initialise))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 408<LI>Call Chain = dwt_initialise &rArr; dwt_softreset &rArr; _dwt_disablesequencing &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
+<<<<<<< HEAD
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setxtaltrim
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readdevid
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read16bitoffsetreg
+=======
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setxtaltrim
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readdevid
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read16bitoffsetreg
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_otpread
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_loaducodefromrom
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_enableclocks
@@ -1293,6 +1551,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
+<<<<<<< HEAD
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxreset
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
@@ -1301,13 +1560,27 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
 <P><STRONG><a name="[cb]"></a>dwt_read16bitoffsetreg</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, deca_device.o(i.dwt_read16bitoffsetreg))
+=======
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxreset
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read16bitoffsetreg
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
+</UL>
+<P><STRONG><a name="[ca]"></a>dwt_read16bitoffsetreg</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, deca_device.o(i.dwt_read16bitoffsetreg))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = dwt_read16bitoffsetreg &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_starttx
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
+<<<<<<< HEAD
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+=======
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[56]"></a>dwt_read32bitoffsetreg</STRONG> (Thumb, 42 bytes, Stack size 24 bytes, deca_device.o(i.dwt_read32bitoffsetreg))
@@ -1316,6 +1589,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI2_3_IRQHandler
+<<<<<<< HEAD
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readsystimestamphi32
 <LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_status
@@ -1330,26 +1604,54 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cd]"></a>dwt_read8bitoffsetreg</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, deca_device.o(i.dwt_read8bitoffsetreg))
+=======
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readsystimestamphi32
+<LI><a href="#[5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_status
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_ok_cb
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxaftertxdelay
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_enableframefilter
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readdevid
+<LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_otpread
+</UL>
+
+<P><STRONG><a name="[cc]"></a>dwt_read8bitoffsetreg</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, deca_device.o(i.dwt_read8bitoffsetreg))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = dwt_read8bitoffsetreg &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxenable
+<<<<<<< HEAD
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
 </UL>
 
 <P><STRONG><a name="[c8]"></a>dwt_readdevid</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readdevid))
+=======
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
+</UL>
+
+<P><STRONG><a name="[c7]"></a>dwt_readdevid</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readdevid))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = dwt_readdevid &rArr; dwt_read32bitoffsetreg &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+=======
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[b4]"></a>dwt_readfromdevice</STRONG> (Thumb, 80 bytes, Stack size 40 bytes, deca_device.o(i.dwt_readfromdevice))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
 </UL>
 <BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
@@ -1363,6 +1665,21 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cf]"></a>dwt_readrxdata</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, deca_device.o(i.dwt_readrxdata))
+=======
+<BR>[Calls]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;readfromspi
+</UL>
+<BR>[Called By]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readtxtimestamp
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readrxtimestamp
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readrxdata
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read8bitoffsetreg
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read16bitoffsetreg
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_enableclocks
+</UL>
+
+<P><STRONG><a name="[ce]"></a>dwt_readrxdata</STRONG> (Thumb, 22 bytes, Stack size 16 bytes, deca_device.o(i.dwt_readrxdata))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = dwt_readrxdata &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
@@ -1370,12 +1687,20 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_ok_cb
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d0]"></a>dwt_readrxtimestamp</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readrxtimestamp))
+=======
+<P><STRONG><a name="[cf]"></a>dwt_readrxtimestamp</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readrxtimestamp))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = dwt_readrxtimestamp &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rx_timestamp_u64
+=======
+<BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rx_timestamp_u64
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[5b]"></a>dwt_readsystimestamphi32</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readsystimestamphi32))
@@ -1387,17 +1712,26 @@ Global Symbols
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GET_Time2Tpoint
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d1]"></a>dwt_readtxtimestamp</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readtxtimestamp))
+=======
+<P><STRONG><a name="[d0]"></a>dwt_readtxtimestamp</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, deca_device.o(i.dwt_readtxtimestamp))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = dwt_readtxtimestamp &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tx_timestamp_u64
+=======
+<BR>[Called By]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tx_timestamp_u64
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[a7]"></a>dwt_rxenable</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, deca_device.o(i.dwt_rxenable))
 <BR><BR>[Stack]<UL><LI>Max Depth = 408<LI>Call Chain = dwt_rxenable &rArr; dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
@@ -1409,6 +1743,19 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cc]"></a>dwt_rxreset</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, deca_device.o(i.dwt_rxreset))
+=======
+<BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read8bitoffsetreg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Start_dwrx
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_err_cb
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+</UL>
+
+<P><STRONG><a name="[cb]"></a>dwt_rxreset</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, deca_device.o(i.dwt_rxreset))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_rxreset &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
@@ -1417,7 +1764,11 @@ Global Symbols
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d2]"></a>dwt_setaddress16</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setaddress16))
+=======
+<P><STRONG><a name="[d1]"></a>dwt_setaddress16</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setaddress16))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_setaddress16 &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
@@ -1425,21 +1776,36 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[e0]"></a>dwt_setcallbacks</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setcallbacks))
+=======
+<P><STRONG><a name="[de]"></a>dwt_setcallbacks</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setcallbacks))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = dwt_setcallbacks
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d3]"></a>dwt_setdelayedtrxtime</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setdelayedtrxtime))
+=======
+<P><STRONG><a name="[d2]"></a>dwt_setdelayedtrxtime</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setdelayedtrxtime))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_setdelayedtrxtime &rArr; dwt_write32bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 </UL>
 
 <P><STRONG><a name="[d4]"></a>dwt_seteui</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, deca_device.o(i.dwt_seteui))
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+</UL>
+
+<P><STRONG><a name="[d3]"></a>dwt_seteui</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, deca_device.o(i.dwt_seteui))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = dwt_seteui &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
@@ -1447,17 +1813,27 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d5]"></a>dwt_setinterrupt</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, deca_device.o(i.dwt_setinterrupt))
+=======
+<P><STRONG><a name="[d4]"></a>dwt_setinterrupt</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, deca_device.o(i.dwt_setinterrupt))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = dwt_setinterrupt &rArr; dwt_write32bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
+<<<<<<< HEAD
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+=======
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d6]"></a>dwt_setpanid</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setpanid))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_setpanid &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
@@ -1470,21 +1846,39 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_setpreambledetecttimeout &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
+=======
+<P><STRONG><a name="[d5]"></a>dwt_setpanid</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setpanid))
+<BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_setpanid &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[d8]"></a>dwt_setrxaftertxdelay</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, deca_device.o(i.dwt_setrxaftertxdelay))
+=======
+<P><STRONG><a name="[d6]"></a>dwt_setrxaftertxdelay</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, deca_device.o(i.dwt_setrxaftertxdelay))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = dwt_setrxaftertxdelay &rArr; dwt_write32bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[d9]"></a>dwt_setrxantennadelay</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setrxantennadelay))
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+</UL>
+
+<P><STRONG><a name="[d7]"></a>dwt_setrxantennadelay</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_setrxantennadelay))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_setrxantennadelay &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
@@ -1497,15 +1891,26 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
+<<<<<<< HEAD
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read8bitoffsetreg
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+=======
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read8bitoffsetreg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[da]"></a>dwt_settxantennadelay</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_settxantennadelay))
+=======
+<P><STRONG><a name="[d8]"></a>dwt_settxantennadelay</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, deca_device.o(i.dwt_settxantennadelay))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_settxantennadelay &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
@@ -1513,15 +1918,26 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[ca]"></a>dwt_setxtaltrim</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, deca_device.o(i.dwt_setxtaltrim))
+=======
+<P><STRONG><a name="[c9]"></a>dwt_setxtaltrim</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, deca_device.o(i.dwt_setxtaltrim))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = dwt_setxtaltrim &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
 </UL>
 
 <P><STRONG><a name="[c9]"></a>dwt_softreset</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, deca_device.o(i.dwt_softreset))
+=======
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+</UL>
+
+<P><STRONG><a name="[c8]"></a>dwt_softreset</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, deca_device.o(i.dwt_softreset))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = dwt_softreset &rArr; _dwt_disablesequencing &rArr; dwt_write16bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;deca_sleep
@@ -1530,13 +1946,18 @@ Global Symbols
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_disablesequencing
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_aonarrayupload
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+=======
+<BR>[Called By]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[a4]"></a>dwt_starttx</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, deca_device.o(i.dwt_starttx))
 <BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = dwt_starttx &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
+<<<<<<< HEAD
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read16bitoffsetreg
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
@@ -1551,6 +1972,22 @@ Global Symbols
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read8bitoffsetreg
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+=======
+<LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read16bitoffsetreg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
+</UL>
+
+<P><STRONG><a name="[c4]"></a>dwt_syncrxbufptrs</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, deca_device.o(i.dwt_syncrxbufptrs))
+<BR><BR>[Stack]<UL><LI>Max Depth = 376<LI>Call Chain = dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read8bitoffsetreg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxenable
 </UL>
 
@@ -1559,6 +1996,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_settxantennadelay
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxantennadelay
@@ -1570,6 +2008,18 @@ Global Symbols
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configuresleep
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configure
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+=======
+<BR>[Called By]<UL><LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_settxantennadelay
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxantennadelay
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setpanid
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setaddress16
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxenable
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configuresleep
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configure
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_otpread
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_loaducodefromrom
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_disablesequencing
@@ -1582,12 +2032,21 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
 </UL>
 <BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI2_3_IRQHandler
+<<<<<<< HEAD
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_ok_cb
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxfctrl
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxaftertxdelay
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setdelayedtrxtime
+=======
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rx_ok_cb
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxfctrl
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxaftertxdelay
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setdelayedtrxtime
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_enableframefilter
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_enableautoack
@@ -1600,6 +2059,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxreset
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_starttx
@@ -1612,6 +2072,20 @@ Global Symbols
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setxtaltrim
+=======
+<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxreset
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_starttx
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_isr
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+<LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_enableautoack
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configuresleep
+<LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configure
+<LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_syncrxbufptrs
+<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_softreset
+<LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setxtaltrim
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_otpread
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_configlde
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_aonarrayupload
@@ -1620,11 +2094,19 @@ Global Symbols
 <P><STRONG><a name="[b5]"></a>dwt_writetodevice</STRONG> (Thumb, 100 bytes, Stack size 40 bytes, deca_device.o(i.dwt_writetodevice))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxdata
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_seteui
+=======
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writetospi
+</UL>
+<BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
+<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxdata
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_seteui
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write8bitoffsetreg
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write16bitoffsetreg
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_dwt_enableclocks
@@ -1635,8 +2117,13 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
 </UL>
 
@@ -1645,6 +2132,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 </UL>
+<<<<<<< HEAD
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
@@ -1654,6 +2142,17 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = final_msg_get_ts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
+</UL>
+
+<P><STRONG><a name="[e6]"></a>final_msg_get_ts</STRONG> (Thumb, 30 bytes, Stack size 12 bytes, deca_callback.o(i.final_msg_get_ts))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = final_msg_get_ts
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[34]"></a>fputc</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, stm32f0xx_hal_msp.o(i.fputc))
@@ -1663,6 +2162,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> printfa.o(i.__0printf)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[dc]"></a>get_rx_timestamp_u64</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, deca_callback.o(i.get_rx_timestamp_u64))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = get_rx_timestamp_u64 &rArr; dwt_readrxtimestamp &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
@@ -1677,11 +2177,28 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readtxtimestamp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+=======
+<P><STRONG><a name="[da]"></a>get_rx_timestamp_u64</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, deca_callback.o(i.get_rx_timestamp_u64))
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = get_rx_timestamp_u64 &rArr; dwt_readrxtimestamp &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readrxtimestamp
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+</UL>
+
+<P><STRONG><a name="[db]"></a>get_tx_timestamp_u64</STRONG> (Thumb, 46 bytes, Stack size 24 bytes, deca_callback.o(i.get_tx_timestamp_u64))
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = get_tx_timestamp_u64 &rArr; dwt_readtxtimestamp &rArr; dwt_readfromdevice &rArr; readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readtxtimestamp
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 
 <P><STRONG><a name="[4]"></a>going</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, testing.o(i.going))
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[31]"></a>main</STRONG> (Thumb, 468 bytes, Stack size 32 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 632<LI>Call Chain = main &rArr; twoway_ranging &rArr; dwt_rxenable &rArr; dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
@@ -1690,6 +2207,15 @@ Global Symbols
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Stop_IT
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
+=======
+<P><STRONG><a name="[31]"></a>main</STRONG> (Thumb, 414 bytes, Stack size 24 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 616<LI>Call Chain = main &rArr; twoway_ranging &rArr; dwt_rxenable &rArr; dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_IT
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Stop_IT
+<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_TIM_Base_Start_IT
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_USART1_UART_Init
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM14_Init
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI2_Init
@@ -1699,6 +2225,7 @@ Global Symbols
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_1_IRQHandler_Config
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_init
+<<<<<<< HEAD
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_DW1000
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;port_set_deca_isr
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_settxantennadelay
@@ -1713,17 +2240,39 @@ Global Symbols
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setaddress16
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_entersleep
+=======
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;reset_DW1000
+<LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;port_set_deca_isr
+<LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_settxantennadelay
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxantennadelay
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxaftertxdelay
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setpanid
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setinterrupt
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_seteui
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setcallbacks
+<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setaddress16
+<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_initialise
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_enableframefilter
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_enableautoack
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configuresleep
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_configure
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_init
+<<<<<<< HEAD
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_us
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+=======
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+<LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay_ms
+<LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twoway_ranging
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send2MainAnch
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;POLL_TimeWindow
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -1731,13 +2280,18 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[df]"></a>port_set_deca_isr</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dw1000.o(i.port_set_deca_isr))
+=======
+<P><STRONG><a name="[dd]"></a>port_set_deca_isr</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dw1000.o(i.port_set_deca_isr))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[0]"></a>read_addr</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, usmart.o(i.read_addr))
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[ce]"></a>readfromspi</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, deca_spi.o(i.readfromspi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
@@ -1747,11 +2301,26 @@ Global Symbols
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Receive
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+=======
+<P><STRONG><a name="[cd]"></a>readfromspi</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, deca_spi.o(i.readfromspi))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = readfromspi &rArr; HAL_SPI_Receive &rArr; HAL_SPI_TransmitReceive &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPIEx_FlushRxFifo
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
+<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Receive
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readfromdevice
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[de]"></a>reset_DW1000</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, dw1000.o(i.reset_DW1000))
+=======
+<P><STRONG><a name="[dc]"></a>reset_DW1000</STRONG> (Thumb, 66 bytes, Stack size 24 bytes, dw1000.o(i.reset_DW1000))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = reset_DW1000 &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
@@ -1772,50 +2341,88 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_write32bitoffsetreg
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_read32bitoffsetreg
+<<<<<<< HEAD
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxreset
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readrxdata
 <LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+=======
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxreset
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_readrxdata
+<LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_forcetrxoff
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
 <P><STRONG><a name="[37]"></a>rx_to_cb</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, deca_callback.o(i.rx_to_cb))
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.main)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[e2]"></a>send2MainAnch</STRONG> (Thumb, 202 bytes, Stack size 56 bytes, main.o(i.send2MainAnch))
 <BR><BR>[Stack]<UL><LI>Max Depth = 448<LI>Call Chain = send2MainAnch &rArr; dwt_writetxfctrl &rArr; dwt_write32bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+=======
+<P><STRONG><a name="[e1]"></a>send2MainAnch</STRONG> (Thumb, 196 bytes, Stack size 48 bytes, main.o(i.send2MainAnch))
+<BR><BR>[Stack]<UL><LI>Max Depth = 440<LI>Call Chain = send2MainAnch &rArr; dwt_writetxfctrl &rArr; dwt_write32bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxfctrl
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxdata
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_starttx
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<<<<<<< HEAD
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+=======
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[e1]"></a>twoway_ranging</STRONG> (Thumb, 922 bytes, Stack size 192 bytes, main.o(i.twoway_ranging))
 <BR><BR>[Stack]<UL><LI>Max Depth = 600<LI>Call Chain = twoway_ranging &rArr; dwt_rxenable &rArr; dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tx_timestamp_u64
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rx_timestamp_u64
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;final_msg_get_ts
+=======
+<P><STRONG><a name="[e0]"></a>twoway_ranging</STRONG> (Thumb, 910 bytes, Stack size 184 bytes, main.o(i.twoway_ranging))
+<BR><BR>[Stack]<UL><LI>Max Depth = 592<LI>Call Chain = twoway_ranging &rArr; dwt_rxenable &rArr; dwt_forcetrxoff &rArr; dwt_syncrxbufptrs &rArr; dwt_write8bitoffsetreg &rArr; dwt_writetodevice &rArr; writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_tx_timestamp_u64
+<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_rx_timestamp_u64
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;final_msg_get_ts
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxfctrl
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetxdata
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_starttx
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxtimeout
+<<<<<<< HEAD
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxaftertxdelay
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setdelayedtrxtime
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxenable
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ul2d
 <LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_l2d
+=======
+<LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setrxaftertxdelay
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_setdelayedtrxtime
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_rxenable
+<LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ul2d
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<<<<<<< HEAD
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2lz
+=======
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SET_Tpoint
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GET_Time2Tpoint
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -1836,9 +2443,15 @@ Global Symbols
 <P><STRONG><a name="[8]"></a>usmart_cmd_rec</STRONG> (Thumb, 176 bytes, Stack size 96 bytes, usmart.o(i.usmart_cmd_rec))
 <BR><BR>[Stack]<UL><LI>Max Depth = 372<LI>Call Chain = usmart_cmd_rec &rArr; usmart_get_fparam &rArr; usmart_str2num &rArr; usmart_pow
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+=======
+<BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
@@ -1846,15 +2459,23 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = usmart_exe &rArr; usmart_get_fname
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
+<<<<<<< HEAD
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_reset_runtime
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_runtime
+=======
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_reset_runtime
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_runtime
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[f0]"></a>usmart_get_aparm</STRONG> (Thumb, 214 bytes, Stack size 20 bytes, usmart_str.o(i.usmart_get_aparm))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = usmart_get_aparm
 </UL>
@@ -1875,10 +2496,33 @@ Global Symbols
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+=======
+<P><STRONG><a name="[ef]"></a>usmart_get_aparm</STRONG> (Thumb, 214 bytes, Stack size 20 bytes, usmart_str.o(i.usmart_get_aparm))
+<BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = usmart_get_aparm
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+</UL>
+
+<P><STRONG><a name="[f5]"></a>usmart_get_cmdname</STRONG> (Thumb, 54 bytes, Stack size 8 bytes, usmart_str.o(i.usmart_get_cmdname))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usmart_get_cmdname
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+</UL>
+
+<P><STRONG><a name="[e8]"></a>usmart_get_fname</STRONG> (Thumb, 462 bytes, Stack size 64 bytes, usmart_str.o(i.usmart_get_fname))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = usmart_get_fname
+</UL>
+<BR>[Calls]<UL><LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_search_nextc
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 <LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_cmd_rec
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[eb]"></a>usmart_get_fparam</STRONG> (Thumb, 266 bytes, Stack size 240 bytes, usmart_str.o(i.usmart_get_fparam))
 <BR><BR>[Stack]<UL><LI>Max Depth = 276<LI>Call Chain = usmart_get_fparam &rArr; usmart_str2num &rArr; usmart_pow
 </UL>
@@ -1887,16 +2531,35 @@ Global Symbols
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
 <LI><a href="#[ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
+=======
+<P><STRONG><a name="[ea]"></a>usmart_get_fparam</STRONG> (Thumb, 266 bytes, Stack size 240 bytes, usmart_str.o(i.usmart_get_fparam))
+<BR><BR>[Stack]<UL><LI>Max Depth = 276<LI>Call Chain = usmart_get_fparam &rArr; usmart_str2num &rArr; usmart_pow
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strlen
+<LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcopy
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_parmpos
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_cmd_rec
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[ec]"></a>usmart_get_parmpos</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_get_parmpos))
 <BR><BR>[Called By]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
 <LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
 <P><STRONG><a name="[ee]"></a>usmart_get_runtime</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, usmart.o(i.usmart_get_runtime))
+=======
+<P><STRONG><a name="[eb]"></a>usmart_get_parmpos</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_get_parmpos))
+<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
+</UL>
+
+<P><STRONG><a name="[ed]"></a>usmart_get_runtime</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, usmart.o(i.usmart_get_runtime))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
@@ -1905,6 +2568,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[f5]"></a>usmart_pow</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, usmart_str.o(i.usmart_pow))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usmart_pow
 </UL>
@@ -1912,17 +2576,31 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[ed]"></a>usmart_reset_runtime</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, usmart.o(i.usmart_reset_runtime))
+=======
+<P><STRONG><a name="[f4]"></a>usmart_pow</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, usmart_str.o(i.usmart_pow))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = usmart_pow
+</UL>
+<BR>[Called By]<UL><LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
+</UL>
+
+<P><STRONG><a name="[ec]"></a>usmart_reset_runtime</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, usmart.o(i.usmart_reset_runtime))
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Called By]<UL><LI><a href="#[9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_exe
 </UL>
 
 <P><STRONG><a name="[a]"></a>usmart_scan</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, usmart.o(i.usmart_scan))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = usmart_scan &rArr; usmart_sys_cmd_exe &rArr; usmart_get_fname
 </UL>
+<<<<<<< HEAD
 <BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+=======
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[ef]"></a>usmart_search_nextc</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_search_nextc))
 <BR><BR>[Called By]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 </UL>
@@ -1959,6 +2637,44 @@ Global Symbols
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_cmdname
 <LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
+=======
+<P><STRONG><a name="[ee]"></a>usmart_search_nextc</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_search_nextc))
+<BR><BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+</UL>
+
+<P><STRONG><a name="[f0]"></a>usmart_str2num</STRONG> (Thumb, 208 bytes, Stack size 28 bytes, usmart_str.o(i.usmart_str2num))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = usmart_str2num &rArr; usmart_pow
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_pow
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+</UL>
+
+<P><STRONG><a name="[e9]"></a>usmart_strcmp</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strcmp))
+<BR><BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_sys_cmd_exe
+<LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_cmd_rec
+</UL>
+
+<P><STRONG><a name="[f2]"></a>usmart_strcopy</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strcopy))
+<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+</UL>
+
+<P><STRONG><a name="[f1]"></a>usmart_strlen</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, usmart_str.o(i.usmart_strlen))
+<BR><BR>[Called By]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fparam
+</UL>
+
+<P><STRONG><a name="[f3]"></a>usmart_sys_cmd_exe</STRONG> (Thumb, 1566 bytes, Stack size 56 bytes, usmart.o(i.usmart_sys_cmd_exe))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = usmart_sys_cmd_exe &rArr; usmart_get_fname
+</UL>
+<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_common_switch8
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_strcmp
+<LI><a href="#[f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_str2num
+<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_fname
+<LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_cmdname
+<LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_get_aparm
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;usmart_scan
@@ -1967,6 +2683,7 @@ Global Symbols
 <P><STRONG><a name="[1]"></a>write_addr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, usmart.o(i.write_addr))
 <BR>[Address Reference Count : 1]<UL><LI> usmart_config.o(.data)
 </UL>
+<<<<<<< HEAD
 <P><STRONG><a name="[db]"></a>writetospi</STRONG> (Thumb, 104 bytes, Stack size 224 bytes, deca_spi.o(i.writetospi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
 </UL>
@@ -1977,6 +2694,18 @@ Global Symbols
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+=======
+<P><STRONG><a name="[d9]"></a>writetospi</STRONG> (Thumb, 104 bytes, Stack size 224 bytes, deca_spi.o(i.writetospi))
+<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = writetospi &rArr; HAL_SPI_Transmit &rArr; SPI_EndRxTxTransaction &rArr; SPI_WaitFifoStateUntilTimeout
+</UL>
+<BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPIEx_FlushRxFifo
+<LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_SPI_Transmit
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexon
+<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;decamutexoff
+<LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dwt_writetodevice
 </UL>
@@ -2095,12 +2824,20 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<<<<<<< HEAD
 <P><STRONG><a name="[b9]"></a>_fp_digits</STRONG> (Thumb, 316 bytes, Stack size 56 bytes, printfa.o(i._fp_digits), UNUSED)
+=======
+<P><STRONG><a name="[b9]"></a>_fp_digits</STRONG> (Thumb, 344 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <BR><BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<<<<<<< HEAD
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+=======
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
@@ -2111,7 +2848,11 @@ Local Symbols
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<<<<<<< HEAD
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+=======
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+>>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0printf
 </UL>

@@ -47,3 +47,4 @@
 .\objects\main.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: .\HARDWARE\Platform_deca\deca_callback.h
 .\objects\main.o: .\HARDWARE\Platform_deca\Deca_user_api.h
+.\objects\main.o: USER\test_fun.h

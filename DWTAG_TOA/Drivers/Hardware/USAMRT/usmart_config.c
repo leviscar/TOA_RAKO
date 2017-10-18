@@ -23,6 +23,7 @@ struct _m_usmart_nametab usmart_nametab[]=
 	(void*)going,"void going(void)",
 	(void*)Read_status,"void Read_status(void)",
 	(void *)Start_dwrx,"void Start_dwrx(void)",
+	(void*)ShowTimeStack,"void ShowTimeStack(void)",
 #ifdef SetDelay
 		(void*)Set_AtennaDelay,"void Set_AtennaDelay(uint16 delay)",
 
