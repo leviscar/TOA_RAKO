@@ -51,5 +51,4 @@ f072cbt6\main.o: ..\Drivers\Hardware\decadriver\deca_device_api.h
 f072cbt6\main.o: ..\Drivers\Hardware\Platform_deca\deca_spi.h
 f072cbt6\main.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\string.h
 f072cbt6\main.o: ..\Drivers\Hardware\Platform_deca\deca_callback.h
-f072cbt6\main.o: ../Src/testing.c
-f072cbt6\main.o: ..\Inc\Testing.h
+f072cbt6\main.o: ..\Inc\testing.h

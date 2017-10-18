@@ -94,3 +94,12 @@ void GET_Time2Tpoint(void)
 	time_stack[timestack_cnt++]=timetmp-time_record;//低九位为常0，寄存器40位分辨率15.65ps，高32位字节分辨率4.006ns
 	
 }
+void ShowTimeStack(void)
+{
+	int i=timestack_cnt;
+	while(i)
+	{
+		double tmp=(double)time_stack[i-1]*4/1000;
+		printf("%d:%f us \r\n",i--,tmp);
+	}
+}

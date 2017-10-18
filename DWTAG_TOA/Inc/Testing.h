@@ -10,9 +10,10 @@ void Read_status(void);
 void Start_dwrx(void);
 void SET_Tpoint(void);
 void GET_Time2Tpoint(void);
+void ShowTimeStack(void);
 extern uint32 time_stack[];
 extern uint16 timestack_cnt;
 extern uint32 time_record;
 extern uint8 triggle;
-
+#define HAULT_POINT {while(!triggle);triggle=0;}
 #endif

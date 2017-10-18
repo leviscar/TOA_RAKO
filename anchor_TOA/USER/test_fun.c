@@ -1,6 +1,9 @@
 
 #include "test_fun.h"
-
+uint32 time_record;
+uint32 time_stack[10];
+uint16 timestack_cnt=0;
+uint8 triggle=0;
 void System_GetClocks(void)
 {
   RCC_ClocksTypeDef rcc_clocks;
@@ -128,4 +131,20 @@ void DMA_test(void)
 	DMA1_Channel2->CNDTR=32;
 	USART_DMACmd(USART1,USART_DMAReq_Tx,ENABLE);
 	while(DMA_transing);
+}
+
+void SET_Tpoint(void)
+{
+	time_record=dwt_readsystimestamphi32();
+}
+void GET_Time2Tpoint(void)
+{
+	uint32 timetmp;
+	timetmp=dwt_readsystimestamphi32();
+	time_stack[timestack_cnt++]=timetmp-time_record;//低九位为常0，寄存器40位分辨率15.65ps，高32位字节分辨率4.006ns
+	
+}
+void going(void)
+{
+	triggle=1;
 }

@@ -11,6 +11,7 @@
 #include "deca_callback.h"
 #include "rf24l01.h"
 #include "Deca_user_api.h"
+#include "test_fun.h"
 //#define FLASHPROTECT
 //#define MAXRDPLEVEL
 #define TGDATA_BUFFLEN 10
@@ -62,12 +63,11 @@ uint8_t nrf_Rx_Buffer[33] ; // nrf无线传输接收数据
  * Its size is adjusted to longest frame that this example code is supposed to handle. */
 static uint16 pan_id = 0xDECA;
 static uint8 eui[] = {'A', 'C', 'K', 'D', 'A', 'T', 'R', 'X'};
-static uint16 short_addr = ANCHOR_NUM; /* "RX" */
+static uint16 Achor_addr = ANCHOR_NUM; /* "RX" */
 
 uint8 rx_buffer[RX_BUF_LEN];
 uint8 DMA_transing=0;
 uint8 frame_seq_nb=0;
-uint8 tx_resp_time[18]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x01, 0x00, 0x2C, 0, 0, 0, 0};
 //uint8 ACKframe[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x00, 0x00, 0xAC, 0, 0};
 uint8 ACKframe[5]={ACK_FC_0,ACK_FC_1,0,0,0};
 uint8 dw_payloadbuff[127];
@@ -168,11 +168,11 @@ int main(void)
 	nrf24l01_init();
 	if(NRF24L01_Check())
 	{
-		printf("\r\n 24L01 not exist\r\n");
+		printf("24L01 not exist\r\n");
 	}
 	else
 	{
-		printf("\r\n 24L01 check ok\r\n");
+		printf("24L01 check ok\r\n");
 	}
 
 	if (dwt_initialise(DWT_LOADUCODE) == DWT_ERROR)	//dw1000 init
@@ -202,7 +202,7 @@ int main(void)
 		
 		dwt_setpanid(pan_id);
     dwt_seteui(eui);
-    dwt_setaddress16(short_addr);
+    dwt_setaddress16(Achor_addr);
 
     /* Configure frame filtering. Only data frames are enabled in this example. Frame filtering must be enabled for Auto ACK to work. */
     //dwt_enableframefilter(DWT_FF_DATA_EN);
@@ -453,9 +453,11 @@ int WirelessSyncDataProcess_SA(void)
 }
 int AssignTimeWindow(void)
 {
-
+	uint8 tx_resp_time[18]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x01, 0x00, 0x2C, 0, 0, 0, 0};
+//SET_Tpoint();
 	tx_resp_time[DESTADD]=Que[front].buff[SOURADD];
 	tx_resp_time[DESTADD+1]=Que[front].buff[SOURADD+1];
+//	*(uint32*)(tx_resp_time+10)=msec;
 	tx_resp_time[10]=(uint8)(msec);
 	tx_resp_time[11]=(uint8)(msec>>8);
 	tx_resp_time[12]=(uint8)(msec>>16);
@@ -465,9 +467,15 @@ int AssignTimeWindow(void)
 	dwt_forcetrxoff();
 	dwt_writetxdata(sizeof(tx_resp_time), tx_resp_time, 0); /* Zero offset in TX buffer. */
 	dwt_writetxfctrl(sizeof(tx_resp_time), 0, 0); /* Zero offset in TX buffer, ranging. */
+//GET_Time2Tpoint();
 	dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
 	while(!isframe_sent);
 	isframe_sent=0;
+//	while(timestack_cnt)
+//	{
+//		double tmp=(double)time_stack[timestack_cnt-1]*4/1000;
+//		printf("%d:%f us \r\n",timestack_cnt--,tmp);
+//	}
 	return 0;
 }
 
@@ -497,17 +505,18 @@ int DS_TwoWayRanging(void)
 	
 	tx_TOAbuff[DESTADD]=Que[front].buff[SOURADD];
 	tx_TOAbuff[DESTADD+1]=(Que[front].buff[SOURADD+1]-128)<<8;
-	tx_TOAbuff[SOURADD]=(uint8)ANCHOR_NUM;
-	tx_TOAbuff[SOURADD+1]=(uint8)(ANCHOR_NUM>>8);
+	tx_TOAbuff[SOURADD]=(uint8)Achor_addr;
+	tx_TOAbuff[SOURADD+1]=(uint8)(Achor_addr>>8);
 	tx_TOAbuff[FUNCODE_IDX]=0x11;
 	dwt_setrxtimeout(1000);//设置接受超时
 	TimeOutCNT=0;
 	dwt_writetxdata(12, tx_TOAbuff, 0); /* Zero offset in TX buffer. */
 	dwt_writetxfctrl(12, 0, 1); /* Zero offset in TX buffer, ranging. */
+	
 	ret=dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);//init first trans
 	if(ret == DWT_ERROR)
 	{
-			return -2;	
+			goto error2;	
 	}
 	while(!isframe_sent);
 	isframe_sent=0;
@@ -518,13 +527,13 @@ int DS_TwoWayRanging(void)
 		while(!isreceive_To&&!isframe_rec);
 		if(isreceive_To==1)
 		{
-			printf("Time out\r\n");
+			printf("I_1_TO\r\n");
 			isreceive_To=0;
 			TimeOutCNT++;
 		}
 		if(TimeOutCNT==2)
 		{
-			return -1;			
+			goto error1;			
 		}
 	}while(isframe_rec);
 	isframe_rec=0;//接受到第一次数据
@@ -534,6 +543,8 @@ int DS_TwoWayRanging(void)
 	poll_tx_ts = get_tx_timestamp_u64();
 	resp_rx_ts = get_rx_timestamp_u64();
 	
+	time_stack[timestack_cnt++]=resp_rx_ts-poll_tx_ts;//SET POINT
+	SET_Tpoint();//SET POINT
 	delayed_txtime = (resp_rx_ts + (INIT_TX_DELAYED_TIME_UUS * UUS_TO_DWT_TIME)) >> 8;
   dwt_setdelayedtrxtime(delayed_txtime);
 	final_tx_ts = (((uint64)(delayed_txtime & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
@@ -544,16 +555,25 @@ int DS_TwoWayRanging(void)
 	
 	dwt_writetxdata(22, tx_TOAbuff, 0); /* Zero offset in TX buffer. */
 	dwt_writetxfctrl(22, 0, 1); /* Zero offset in TX buffer, ranging. */
+	GET_Time2Tpoint();
 	ret = dwt_starttx(DWT_START_TX_DELAYED);
 	if(ret == DWT_ERROR)
 	{
-			return -2;	
+			goto error2;	
 	}
 	while(!isframe_sent);
 	isframe_sent=0;
-	
+	while(timestack_cnt)
+	{
+		double tmp=(double)time_stack[timestack_cnt-1]*4/1000;
+		printf("%d:%f ms \r\n",timestack_cnt--,tmp);
+	}
 	TOARanging=0;
 	return 0;
+error1:
+	return -1;
+error2:
+	return -2;
 }
 /*========================================
 	

@@ -2202,7 +2202,7 @@ void dwt_isr(void)
     // Handle frame reception/preamble detect timeout events
     if(status & SYS_STATUS_ALL_RX_TO)
     {
-        dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXRFTO); // Clear RX timeout event bits
+				dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXRFTO); // Clear RX timeout event bits
 
         dw1000local.wait4resp = 0;
 

@@ -38,7 +38,7 @@
 #define WRIDX 11
 
 #define QUANTITY_ANCHOR 3
-#define TOA_MSG_LEN 12+8*QUANTITY_ANCHOR
+#define TOA_MSG_LEN 12+4*QUANTITY_ANCHOR
 #define TOA_DATA_IDX 10
 
 /*
@@ -49,10 +49,8 @@
 #define FINAL_MSG_POLL_TX_TS_IDX 10
 #define FINAL_MSG_RESP_RX_TS_IDX 15
 #define FINAL_MSG_FINAL_TX_TS_IDX 20
-#define DWT_TIME_UNITS     (1.0/499.2e6/128.0)
 #define SPEED_OF_LIGHT 299702547
 
-#define HAULT_POINT {while(!triggle);triggle=0;}
 //#define FLASHPROTECT
 //#define MAXRDPLEVEL
 typedef unsigned long long uint64;

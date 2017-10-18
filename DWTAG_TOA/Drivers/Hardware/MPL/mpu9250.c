@@ -70,7 +70,7 @@ void run_self_test(void)
     }
 	else
 	{
-		__NOP;
+		
 	}
 }						
 /** Converts an orientation matrix made up of 0,+1,and -1 to a scalar representation.

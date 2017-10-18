@@ -98,14 +98,14 @@ static void EXTI2_3_IRQHandler_Config(void);
 static void EXTI0_1_IRQHandler_Config(void);
 void dw_setARER(int enable);
 void dw_closeack(void);
-int twoway_ranging(uint16 base_addr,double *dis);
-int send2MainAnch(double *data,int len);
+int twoway_ranging(uint16 base_addr,float *dis);
+int send2MainAnch(float *data,int len);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
 static uint16 pan_id = 0xDECA;
 static uint8 eui[] = {'A', 'C', 'K', 'D', 'A', 'T', 'R', 'X'};
-static uint16 short_addr = TAG_ID; /* "RX" */
+
 
 uint8_t aTxBuffer=0xAA;
 uint8_t aRxBuffer;
@@ -118,8 +118,7 @@ uint8_t nrf_Tx_Buffer[33] ; // nrf无线传输发送数据
 uint8_t nrf_Rx_Buffer[33] ; // nrf无线传输接收数据
 uint8_t MPUdatabuff[5][33];
 unsigned int localtime=0;//本地时间
-uint8_t usart_rx_buff[64];//串口buff
-uint8 tx_poll_time[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, 0x00, 0x00, 0x2B, 0, 0};//用来查询时间戳的
+uint8_t usart_rx_buff[64];//串口buf
 uint8 tx_poll_msg[PLLMSGLEN] = {0x41, 0x88, 0, 0xCA, 0xDE, 0xFF, 0xFF, 0, 0, 0x80, 0, 0};//時鐘同步時進行廣播閃爍的
 
 
@@ -139,7 +138,7 @@ volatile uint8 tim14_int=0;
 //for testing
 uint8 triggle=0;
 uint8 tmp[5];
-
+uint16 Tag_ID=TAG_ID;
 
 #ifdef TIMEBASE
 
@@ -175,18 +174,18 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-//	unsigned int i=0,j=0;
 
-	uint16 lp_osc_freq, sleep_cnt;
+//	uint16 lp_osc_freq, sleep_cnt;
 	decaIrqStatus_t  stat ;
-	uint32 txtime=0;
-	uint16 tagid=TAG_ID;
-	uint16 transcnt=0;
-	unsigned long sensor_timestamp;
-	uint8_t tmp_buf[12];
-	uint8_t i,j,key,flag,MPUdatacnt=0;
+//	uint32 txtime=0;
+//	uint16 transcnt=0;
+//	unsigned long sensor_timestamp;
+//	uint8_t tmp_buf[12];
+//	uint8_t j,key,flag,MPUdatacnt=0;
+	uint8_t i;
 	uint8 cnt_toa=0;
-	double dis[QUANTITY_ANCHOR];
+	uint16 tagid=TAG_ID;
+	float dis[QUANTITY_ANCHOR];
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -257,7 +256,7 @@ int main(void)
 	dwt_configure(&config);
 	dwt_setpanid(pan_id);
   dwt_seteui(eui);
-  dwt_setaddress16(short_addr);
+  dwt_setaddress16(Tag_ID);
 	//dwt_setleds(DWT_LEDS_ENABLE);//set the led
 	port_set_deca_isr(dwt_isr);		
 	dwt_setcallbacks(&tx_conf_cb, &rx_ok_cb, &rx_to_cb, &rx_err_cb);
@@ -274,7 +273,7 @@ int main(void)
 	dwt_setinterrupt(DWT_INT_ALLERR|DWT_INT_TFRS|DWT_INT_RFCG|DWT_INT_RFTO,1);//开启中断
 	dwt_setrxaftertxdelay(0);
 	dwt_setrxtimeout(0);
-	dwt_setpreambledetecttimeout(8);//需要查驗，不確定效果
+	//dwt_setpreambledetecttimeout(8);//需要查驗，不確定效果
 	
 //	lp_osc_freq = (XTAL_FREQ_HZ / 2) / dwt_calibratesleepcnt();
 //	sleep_cnt = ((SLEEP_TIME_MS * lp_osc_freq) / 1000) >> 12;	
@@ -282,6 +281,7 @@ int main(void)
 	dwt_configuresleep(DWT_PRESRV_SLEEP | DWT_CONFIG |DWT_LLDLOAD|DWT_LLD0, DWT_WAKE_WK | DWT_SLP_EN);
 	tim14_int=1;
 	cnt_toa=10;
+	HAL_TIM_Base_Start_IT(&htim14);//tim14開始計時	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -299,22 +299,28 @@ int main(void)
 			send2MainAnch(dis,QUANTITY_ANCHOR);
 			printf("sent data\r\n");
 			//Sleep
+			//dwt_entersleep();
 		}
 		else
 		{
 			cnt_toa=0;
-			HAL_TIM_Base_Stop_IT(&htim14);
-			TIM14->CNT=0;
 			printf("poll\r\n");
 			POLL_TimeWindow();
 			Delay_ms(1000-ACtime%1000);
 			Delay_ms((TAG_ID-0x8000u)*50);//每个标签拥有20ms的间隔。第一個20ms給同步時間信號
+			HAL_TIM_Base_Stop_IT(&htim14);
+			TIM14->CNT=0;
 			HAL_TIM_Base_Start_IT(&htim14);//tim14開始計時	
 			tim14_int=0;			
 		}
 		while(!tim14_int);
 		tim14_int=0;//tim14 发生中断
-		printf("int14 \r\n");
+
+//		HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_SET);//wake up
+//		Delay_us(500);
+//		HAL_GPIO_WritePin(DWWAKE_GPIO_Port, DWWAKE_Pin, GPIO_PIN_RESET);
+//		Delay_ms(3);
+		
   /* USER CODE BEGIN 3 */
 	
   }while(1);
@@ -639,12 +645,9 @@ void dw_closeack(void)
 }
 void POLL_TimeWindow(void)
 {
-	uint16 tagid=TAG_ID;
-	uint32 time=0;
-	dwt_setrxtimeout(2000);//设置接受超时
 	
-	tx_poll_time[7]=(uint8)tagid;
-	tx_poll_time[8]=(uint8)(tagid>>8);
+	uint8 tx_poll_time[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x01, 0x00, (uint8)Tag_ID, (uint8)(Tag_ID>>8), 0x2B, 0, 0};//用来查询时间戳的
+	dwt_setrxtimeout(800);//设置接受超时
 	dwt_writetxdata(sizeof(tx_poll_time), tx_poll_time, 0);
 	dwt_writetxfctrl(sizeof(tx_poll_time), 0, 0);
 	ACtime=0;
@@ -652,6 +655,7 @@ void POLL_TimeWindow(void)
 	{
 		do
 		{
+			isreceive_To=0;
 			dwt_starttx(DWT_START_TX_IMMEDIATE|DWT_RESPONSE_EXPECTED);
 			while(!isframe_sent);
 			isframe_sent=0;	
@@ -683,7 +687,7 @@ void POLL_TimeWindow(void)
 /*
 
 */
-int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
+int twoway_ranging(uint16 base_addr,float *distance)//單次測距函數
 {
 	//虽然这些数据很多，但是默认栈有1kb，所以不会有什么问题
 	uint16 tagid=TAG_ID;
@@ -693,15 +697,13 @@ int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
 	uint64 poll_tx_ts, resp_rx_ts, final_tx_ts;
 	double Ra,Rb,Da,Db;
 	int ret;
-	long long tof_dtu;
+	double tof_dtu;
 	double tof;
-	uint8 tx_TOAbuff[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, 0x00, 0x00, 0x10};//TOA定位所使用的buff
+	uint8 tx_TOAbuff[12]={0x41, 0x88, 0, 0xCA, 0xDE, 0x00, 0x00, (uint8)Tag_ID, (uint8)(Tag_ID>>8), 0x10};//TOA定位所使用的buff
 	
 	HAULT_POINT
 	tx_TOAbuff[DESTADD]=(uint8)base_addr;
 	tx_TOAbuff[DESTADD+1]=(uint8)(base_addr>>8);
-	tx_TOAbuff[SOURADD]=(uint8)tagid;
-	tx_TOAbuff[SOURADD+1]=(uint8)(tagid>>8);
 	tx_TOAbuff[0]=0x61;//请求应答
 	dwt_setrxtimeout(1000);//设置接受超时
 	dwt_writetxdata(12, tx_TOAbuff, 0);//发起定位请求
@@ -720,7 +722,7 @@ int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
 		while(!isreceive_To&&!istxframe_acked);
 		if(isreceive_To==1)
 		{
-			printf("wait 4 ack Time out\r\n");
+			printf("W4ACk TO\r\n");
 			isreceive_To=0;
 			TimeOutCNT++;
 		}
@@ -742,7 +744,7 @@ int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
 		while(!isreceive_To&&!isframe_rec);
 		if(isreceive_To==1)
 		{
-			printf("Time out\r\n");
+			printf("WF_I_1_TO\r\n");
 			isreceive_To=0;
 			TimeOutCNT++;
 		}
@@ -778,6 +780,7 @@ int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
 	while(!isreceive_To&&!isframe_rec);
 	if(isreceive_To==1)
 	{
+			printf("WF_I_2_TO\r\n");
 			isreceive_To=0;
 			*distance=0;
 			goto error1;
@@ -795,14 +798,13 @@ int twoway_ranging(uint16 base_addr,double *distance)//單次測距函數
 	Rb = (double)(final_rx_ts - resp_tx_ts);
 	Da = (double)(final_tx_ts - resp_rx_ts);
 	Db = (double)(resp_tx_ts - poll_rx_ts);
-	tof_dtu = (long long)((Ra * Rb - Da * Db) / (Ra + Rb + Da + Db));
-	
+	tof_dtu = (Ra * Rb - Da * Db) / (Ra + Rb + Da + Db);
 	tof = tof_dtu * DWT_TIME_UNITS;
-  *distance = tof * SPEED_OF_LIGHT;
+  *distance = (float)tof * SPEED_OF_LIGHT;
 	while(timestack_cnt)
 	{
 		double tmp=(double)time_stack[timestack_cnt-1]*4/1000;
-		printf("%d:%f ms \r\n",timestack_cnt--,tmp);
+		printf("%d:%f us \r\n",timestack_cnt--,tmp);
 	}
 	HAULT_POINT
 	return 0;
@@ -815,7 +817,7 @@ error2:
 }
 
 
-int send2MainAnch(double *data,int len)//發送數據給主機站
+int send2MainAnch(float *data,int len)//發送數據給主機站
 {
 	uint8 tx_TOAdata[TOA_MSG_LEN]={0x61,0x88,0,0xCA, 0xDE,0x01, 0x00, 0x00, 0x00,0x1a};//发送TOA数据
 	uint16 tagid=TAG_ID;
@@ -823,7 +825,7 @@ int send2MainAnch(double *data,int len)//發送數據給主機站
 	tx_TOAdata[SOURADD]=(uint8)tagid;
 	tx_TOAdata[SOURADD+1]=(uint8)(tagid>>8);
 	tx_TOAdata[FRAME_IDX]=dw_txseq_num++;;
-	memcpy(tx_TOAdata+TOA_DATA_IDX,data,len*sizeof(double));
+	memcpy(tx_TOAdata+TOA_DATA_IDX,data,len*sizeof(float));
 	dwt_writetxdata(TOA_MSG_LEN, tx_TOAdata, 0);
 	dwt_writetxfctrl(TOA_MSG_LEN, 0, 0);
 	dwt_setrxtimeout(500);//设置接受超时
