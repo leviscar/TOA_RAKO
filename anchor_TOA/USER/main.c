@@ -63,7 +63,6 @@ uint8_t nrf_Rx_Buffer[33] ; // nrf无线传输接收数据
 static uint16 pan_id = 0xDECA;
 static uint8 eui[] = {'A', 'C', 'K', 'D', 'A', 'T', 'R', 'X'};
 static uint16 short_addr = ANCHOR_NUM; /* "RX" */
-
 uint8 rx_buffer[RX_BUF_LEN];
 uint8 DMA_transing=0;
 uint8 frame_seq_nb=0;
@@ -600,7 +599,31 @@ void dw_setARER(int enable)
 	dwt_write32bitreg(SYS_CFG_ID,syscfg);
 }
 
-
+void send_to_PC(void)
+{
+	uint8 send_pc[]={0xFB, 0xFB, 0x11, 0, 0, 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	uint64 buff_dis;
+	uint8_t i;
+	uint8_t len=16;
+	uint8_t crc=0;
+	uint8_t *pointerP;
+		
+	
+	while(len--)
+	{
+		for(i=0x80;i!=0;i>>=1)
+		{
+			if((crc&0x40)!=0) {crc<<=1;crc^=9;}
+			else crc<<=1;
+			if((*pointerP&i)!=0) crc^=9;		 
+		}
+		pointerP++;
+	}
+	crc=(uint8_t)(crc&0x7f);
+	crc=(uint8_t)(crc<<1);
+	crc=(uint8_t)(crc|0x01);
+	send_pc[19]=crc;
+}
 
 void TIM7_init(void)
 {
