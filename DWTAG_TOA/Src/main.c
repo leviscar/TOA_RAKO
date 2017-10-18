@@ -309,11 +309,8 @@ int main(void)
 			send2MainAnch(dis,QUANTITY_ANCHOR);
 			printf("sent data\r\n");
 			//Sleep
-<<<<<<< HEAD
-			dwt_entersleep();
-=======
+
 			//dwt_entersleep();
->>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 		}
 		else
 		{

@@ -44,7 +44,7 @@ typedef unsigned long long uint64;
 #define SPEED_OF_LIGHT 299702547
 /* Length of the common part of the message (up to and including the function code, see NOTE 3 below). */
 #define ALL_MSG_COMMON_LEN 10
-
+#define QUANTITY_ANCHOR 3
 #define RX_BUF_LEN 127
 #define USAMRTCMD 63//==/?
 #define ANCHORCNT 4

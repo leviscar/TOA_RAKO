@@ -4,7 +4,7 @@
 .\objects\deca_sleep.o: .\USER\sys.h
 .\objects\deca_sleep.o: .\SYSTEM\stm32f0xx.h
 .\objects\deca_sleep.o: .\CORE\core_cm0.h
-.\objects\deca_sleep.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\deca_sleep.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\deca_sleep.o: .\CORE\core_cmInstr.h
 .\objects\deca_sleep.o: .\CORE\core_cmFunc.h
 .\objects\deca_sleep.o: .\SYSTEM\system_stm32f0xx.h
@@ -33,7 +33,7 @@
 .\objects\deca_sleep.o: .\FWlib\inc\stm32f0xx_usart.h
 .\objects\deca_sleep.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\deca_sleep.o: .\FWlib\inc\stm32f0xx_misc.h
-.\objects\deca_sleep.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\deca_sleep.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\deca_sleep.o: .\HARDWARE\decadriver\deca_types.h
 .\objects\deca_sleep.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\deca_sleep.o: .\HARDWARE\decadriver\deca_version.h

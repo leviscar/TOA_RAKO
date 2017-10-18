@@ -23,6 +23,7 @@ static int AssignTimeWindow(void);
 static int TOAdata_process(void);
 static int DS_TwoWayRanging(void);
 
+void send_to_PC(void);
 void TIM7_init(void);
 void SWITCH_DB(void);
 void cacu_crc(void);
@@ -63,12 +64,8 @@ uint8_t nrf_Rx_Buffer[33] ; // nrf无线传输接收数据
  * Its size is adjusted to longest frame that this example code is supposed to handle. */
 static uint16 pan_id = 0xDECA;
 static uint8 eui[] = {'A', 'C', 'K', 'D', 'A', 'T', 'R', 'X'};
-<<<<<<< HEAD
-static uint16 short_addr = ANCHOR_NUM; /* "RX" */
-=======
 static uint16 Achor_addr = ANCHOR_NUM; /* "RX" */
 
->>>>>>> 5ada385687bbffe60686216090b432ea844e8367
 uint8 rx_buffer[RX_BUF_LEN];
 uint8 DMA_transing=0;
 uint8 frame_seq_nb=0;
@@ -491,6 +488,7 @@ int TOAdata_process(void)
 	tagnumtmp+=(Que[front].buff[SOURADD+1]-128)<<8;
 	idx=Que[front].buff[FRAME_SN_IDX];
 	printf("TAG:%d No:%d\r\n",tagnumtmp,idx);
+	send_to_PC();
 	return 0;
 }
 
@@ -627,13 +625,42 @@ void dw_setARER(int enable)
 void send_to_PC(void)
 {
 	uint8 send_pc[]={0xFB, 0xFB, 0x11, 0, 0, 0x02, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	uint64 buff_dis;
+	uint32 buff_dis[QUANTITY_ANCHOR];
 	uint8_t i;
 	uint8_t len=16;
 	uint8_t crc=0;
 	uint8_t *pointerP;
-		
+	memcpy(buff_dis,Que[front].buff+RXBUFFTS_IDX,sizeof(float));
+	memcpy(buff_dis+4,Que[front].buff+RXBUFFTS_IDX+4,sizeof(float));
+	memcpy(buff_dis+8,Que[front].buff+RXBUFFTS_IDX+8,sizeof(float));
+	//
+	send_pc[3]=0x38;
+	send_pc[4]=ANCHOR_NUM;
+	//tag_id
+	send_pc[6]=Que[front].buff[SOURADD];
+	send_pc[7]=(Que[front].buff[SOURADD+1]-128)<<8;
 	
+	//wearing status
+	send_pc[8]=0x0E;
+	for(i=0;i<QUANTITY_ANCHOR;i++)
+	{
+		buff_dis[i]*=1000;
+	}
+	
+	
+	//main anchor distance(float) size 4 bytes
+	send_pc[9]=(uint8)((buff_dis[0]>>8)&0xff);
+	send_pc[10]=(uint8)(buff_dis[0]&0xff);
+	
+	//anchor 2 distance(float) 
+	send_pc[11]=(uint8)((buff_dis[1]>>8)&0xff);
+	send_pc[12]=(uint8)(buff_dis[0]&0xff);
+	
+	//anchor 3 distance(float)
+	send_pc[13]=(uint8)((buff_dis[1]>>8)&0xff);
+	send_pc[14]=(uint8)(buff_dis[0]&0xff);
+	
+	pointerP=&send_pc[2];
 	while(len--)
 	{
 		for(i=0x80;i!=0;i>>=1)
@@ -648,6 +675,12 @@ void send_to_PC(void)
 	crc=(uint8_t)(crc<<1);
 	crc=(uint8_t)(crc|0x01);
 	send_pc[19]=crc;
+	
+	for(i=0;i<20;i++)
+	{
+		while(USART_GetFlagStatus(USART1,USART_FLAG_TC)==RESET); 
+		USART_SendData(USART1,(uint8_t)send_pc[i]);
+	}
 }
 
 void TIM7_init(void)

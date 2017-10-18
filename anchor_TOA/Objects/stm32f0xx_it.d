@@ -3,7 +3,7 @@
 .\objects\stm32f0xx_it.o: .\USER\sys.h
 .\objects\stm32f0xx_it.o: .\SYSTEM\stm32f0xx.h
 .\objects\stm32f0xx_it.o: .\CORE\core_cm0.h
-.\objects\stm32f0xx_it.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stm32f0xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\stm32f0xx_it.o: .\CORE\core_cmInstr.h
 .\objects\stm32f0xx_it.o: .\CORE\core_cmFunc.h
 .\objects\stm32f0xx_it.o: .\SYSTEM\system_stm32f0xx.h
@@ -32,7 +32,7 @@
 .\objects\stm32f0xx_it.o: .\FWlib\inc\stm32f0xx_usart.h
 .\objects\stm32f0xx_it.o: .\FWlib\inc\stm32f0xx_wwdg.h
 .\objects\stm32f0xx_it.o: .\FWlib\inc\stm32f0xx_misc.h
-.\objects\stm32f0xx_it.o: D:\Program Files\keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\stm32f0xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\stm32f0xx_it.o: .\HARDWARE\decadriver\deca_types.h
 .\objects\stm32f0xx_it.o: .\HARDWARE\decadriver\deca_regs.h
 .\objects\stm32f0xx_it.o: .\HARDWARE\decadriver\deca_version.h
